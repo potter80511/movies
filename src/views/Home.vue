@@ -1,16 +1,35 @@
 <template>
-  <div class="swiper">
-    <v-carousel
-      height="auto"
-      interval="5000">
-      <v-carousel-item
-        v-for="(item,i) in items"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-      ></v-carousel-item>
-    </v-carousel>
+  <div class="home">
+    <div class="swiper">
+      <v-carousel
+        height="auto"
+        interval="5000">
+        <v-carousel-item
+          v-for="(item,i) in items"
+          :key="i"
+          :src="item.src"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        ></v-carousel-item>
+      </v-carousel>
+    </div>
+    <div class="movie_list">
+      <v-layout>
+        <v-flex md3 
+          v-for="(item, i) in moviesData"
+          :key="i"
+          >
+          <v-card>
+            <v-card-title>{{ item.name }}</v-card-title>
+            <v-card-text>{{ item.brief }}</v-card-text>
+            <v-card-actions>
+              <v-btn text>Click</v-btn>
+            </v-card-actions>
+          </v-card>  
+        </v-flex>
+      </v-layout>
+
+    </div>
   </div>
 </template>
 
@@ -33,5 +52,10 @@ export default {
   components: {
     HelloWorld,
   },
+  computed: {
+    moviesData() {
+      return this.$store.state.movies
+    }
+  }
 };
 </script>
