@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="swiper">
+    <v-carousel
+      height="auto"
+      interval="5000">
+      <v-carousel-item
+        v-for="(item,i) in items"
+        :key="i"
+        :src="item.src"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      ></v-carousel-item>
+    </v-carousel>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '../components/HelloWorld';
 
 export default {
-  name: 'home',
+  data () {
+    return {
+      items: [
+        {
+          src: 'https://wallpapercave.com/wp/wp1886209.jpg',
+        },
+        {
+          src: 'https://wallpapertag.com/wallpaper/full/c/3/9/467334-free-download-breaking-bad-wallpaper-1920x1080-1920x1080-for-mac.jpg',
+        },
+      ],
+    }
+  },
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+};
 </script>
