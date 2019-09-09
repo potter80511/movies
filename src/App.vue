@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="bg_color_none">
     <Header />
     <div class="content">
       <router-view />
@@ -27,7 +27,9 @@ export default {
   body {
     background: #000;
   }
-
+  .bg_color_none {
+    background: none!important;
+  }
   .swiper {
     background: #000;
   }
