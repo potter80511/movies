@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     movies: []
   },
-  mutations: {
+  mutations: { //更改狀態
     setLoadedMovies(state, payload) {
       state.movies = payload
     }
@@ -24,9 +24,11 @@ export default new Vuex.Store({
             movies.push({
               id: key,
               name: obj[key].name,
-              brief: obj[key].brief
+              brief: obj[key].brief,
+              wallpaper: obj[key].wallpaper
             })
           }
+          console.log(movies)
           commit('setLoadedMovies', movies)
         })
     }
