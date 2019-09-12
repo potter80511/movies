@@ -69,15 +69,17 @@
     computed: {
       moviesData() {
         return this.$store.state.movies
-      }
+      },
     }
   };
 </script>
 <style lang="scss" scoped>
   .home {
     .movie_list {
-      .list_conent {
-        * {color: #fff;}
+      .list_content {
+        * {
+          color: #fff;
+        }
       }
     }
   }
