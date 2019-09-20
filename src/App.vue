@@ -27,6 +27,10 @@ export default {
   body {
     background: #000;
   }
+  img {
+    width: 100%;
+    height: auto;
+  }
   .bg_color_none {
     background: none!important;
   }

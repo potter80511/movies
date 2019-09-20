@@ -18,10 +18,9 @@
         <swiper-slide
           v-for="(item, i) in moviesData"
           :key="i">
-          <v-img 
-            :src="item.wallpaper"
-            height="592">
-          </v-img>
+          <div>
+            <img :src="item.wallpaper">
+          </div>
           <div class="list_content">
             <div class="movie_title">
               <h2>{{ item.name }}</h2>
