@@ -34,6 +34,34 @@ export default {
   .bg_color_none {
     background: none!important;
   }
+  .swiper-container {
+    
+  }
+  .swiper-button {
+    background-image: none!important;
+    width: 20px!important;
+    height: 20px!important;
+    border-color: #fff;
+    border-style: solid;
+    transform: rotate(45deg);
+    &.swiper-button-prev {
+      border-width: 0 0 3px 3px;
+      left: 20px;
+    }
+    &.swiper-button-next {
+      border-width: 3px 3px 0 0;
+      right: 20px;
+    }
+  }
+  .section-header {
+    margin-bottom: 25px;
+    h2 {
+      color: #fff;
+      font-size: 26px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 15px;
+    }
+  }
   .swiper {
     background: #000;
   }

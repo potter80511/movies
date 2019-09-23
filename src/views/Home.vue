@@ -14,26 +14,30 @@
       </v-carousel>
     </div>
     <div class="movie_list">
-      <swiper :options="swiperOption">
-        <swiper-slide
-          v-for="(item, i) in moviesData"
-          :key="i">
-          <div>
-            <img :src="item.wallpaper">
-          </div>
-          <div class="list_content">
-            <div class="movie_title">
-              <h2>{{ item.name }}</h2>
+      <div class="container">
+        <div class="section-header">
+          <h2>Favorite Series</h2>
+        </div>
+        <swiper :options="swiperFavoriteSeries">
+          <swiper-slide
+            v-for="(item, i) in moviesData"
+            :key="i">
+            <div>
+              <img :src="item.wallpaper">
             </div>
-            <div class="movie_discription">
-              <p>{{ item.brief }}</p>
+            <div class="list_content">
+              <div class="movie_title">
+                <h2>{{ item.name }}</h2>
+              </div>
+              <div class="movie_discription">
+                <p>{{ item.brief }}</p>
+              </div>
             </div>
-          </div>
-        </swiper-slide>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-      </swiper>
-      
+          </swiper-slide>
+        </swiper>
+      </div>
+      <div class="swiper-button-prev swiper-button" slot="button-prev"></div>
+      <div class="swiper-button-next swiper-button" slot="button-next"></div>
     </div>
   </div>
 </template>
@@ -52,9 +56,15 @@
             src: 'https://wallpapertag.com/wallpaper/full/c/3/9/467334-free-download-breaking-bad-wallpaper-1920x1080-1920x1080-for-mac.jpg',
           },
         ],
-        swiperOption: {
-          slidesPerView: 4,
+        swiperFavoriteSeries: {
+          slidesPerView: 5,
           spaceBetween: 30,
+          speed: 800,
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false
+          },
           navigation: {
             nextEl: '.movie_list .swiper-button-next',
             prevEl: '.movie_list .swiper-button-prev'
@@ -75,6 +85,11 @@
 <style lang="scss" scoped>
   .home {
     .movie_list {
+      overflow: hidden;
+      position: relative;
+      .swiper-container {
+        overflow: visible;
+      }
       .list_content {
         * {
           color: #fff;
