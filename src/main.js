@@ -25,5 +25,6 @@ new Vue({
       storageBucket: 'movies-a4f0a.appspot.com',
     });
     this.$store.dispatch('loadedMovies')
+    this.$store.dispatch('loadedSeries')
   }
 }).$mount('#app')

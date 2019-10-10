@@ -44,6 +44,7 @@ export default {
     border-color: #fff;
     border-style: solid;
     transform: rotate(45deg);
+    &:focus {}
     &.swiper-button-prev {
       border-width: 0 0 3px 3px;
       left: 20px;

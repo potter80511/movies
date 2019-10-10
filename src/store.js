@@ -6,16 +6,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    movies: []
+    movies: [],
+    series: [],
   },
   mutations: { //更改狀態
     setLoadedMovies(state, payload) {
       state.movies = payload
-    }
+    },
+    setLoadedSeries(state, payload) {
+      state.series = payload
+    },
   },
   actions: {
     loadedMovies({commit}) {
-      firebase.database().ref('movies').once('value')
+      firebase.database().ref('movies').orderByChild('type').equalTo('movies').once('value')
         .then((data) => {
           const movies = []
           const obj = data.val()
@@ -28,9 +32,41 @@ export default new Vuex.Store({
               wallpaper: obj[key].wallpaper
             })
           }
-          console.log(movies)
+          console.log(data)
           commit('setLoadedMovies', movies)
         })
-    }
+    },
+    loadedSeries({commit}) {
+      firebase.database().ref('movies').orderByChild('type').equalTo('series').once('value')
+        .then((data) => {
+          const series = []
+          const obj = data.val()
+          
+          for (let key in obj) {
+            series.push({
+              id: key,
+              name: obj[key].name,
+              brief: obj[key].brief,
+              wallpaper: obj[key].wallpaper
+            })
+          }
+          console.log(data)
+          commit('setLoadedSeries', series)
+        })
+    },
+  },
+  getters: {
+    filterFavoriteMovies(state) {
+      const filterData = state.movies.filter((o) => {
+        return o.favorite = true
+      });
+      return filterData;
+    },
+    filterFavoriteSeries(state) {
+      const filterData = state.series.filter((o) => {
+        return o.favorite = true
+      });
+      return filterData;
+    },
   }
 })
