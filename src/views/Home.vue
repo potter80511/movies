@@ -20,6 +20,7 @@
         </div>
         <swiper :options="swiperFavoriteSeries">
           <swiper-slide
+            v-if="seriesData.length"
             v-for="(item, i) in seriesData"
             :key="i">
             <div>
@@ -89,11 +90,19 @@
           loop: true,
           autoplay: {
             delay: 4000,
-            disableOnInteraction: false
+            disableOnInteraction: false,
+          },
+          breakpoints: {
+            1024: {
+              slidesPerView: 4,
+            },
+            768: {
+              slidesPerView: 3,
+            },
           },
           navigation: {
             nextEl: '.series_list .swiper-button-next',
-            prevEl: '.series_list .swiper-button-prev'
+            prevEl: '.series_list .swiper-button-prev',
           }
         },
         swiperFavoriteMovies: {
@@ -103,11 +112,11 @@
           loop: true,
           autoplay: {
             delay: 4000,
-            disableOnInteraction: false
+            disableOnInteraction: false,
           },
           navigation: {
             nextEl: '.movie_list .swiper-button-next',
-            prevEl: '.movie_list .swiper-button-prev'
+            prevEl: '.movie_list .swiper-button-prev',
           }
         },
       }

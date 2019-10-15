@@ -66,4 +66,9 @@ export default {
   .swiper {
     background: #000;
   }
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1264px;
+    }
+  }
 </style>
