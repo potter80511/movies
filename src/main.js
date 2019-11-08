@@ -6,8 +6,23 @@ import vuetify from './plugins/vuetify';
 import vueSwiper from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css'
 import { initializeApp, auth } from 'firebase';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// import { 
+//   faStarHalf,
+// } from '@fortawesome/free-regular-svg-icons';
+import { 
+  faStar,
+  faStarHalfAlt,
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(
+  faStar,
+  faStarHalfAlt,
+)
 
 Vue.use(vueSwiper);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false
 

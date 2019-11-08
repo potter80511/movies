@@ -18,15 +18,24 @@
         <div class="section-header">
           <h2>Favorite Series</h2>
         </div>
-        <swiper :options="swiperFavoriteSeries">
+        <swiper 
+          :options="swiperFavoriteSeries"
+          v-if="seriesData.length > 0">
           <swiper-slide
-            v-if="seriesData.length"
             v-for="(item, i) in seriesData"
             :key="i">
             <div>
               <img :src="item.wallpaper">
             </div>
             <div class="list_content">
+              <div class="rates">
+                <span v-for="(star, j) in rateStar(item.rates)"
+                      :key="j">
+                  <font-awesome-icon v-if="star==='star'" icon="star" />
+                  <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                </span>
+                <b>{{item.rates}}</b>
+              </div>
               <div class="movie_title">
                 <h2>{{ item.name }}</h2>
               </div>
@@ -53,6 +62,14 @@
               <img :src="item.wallpaper">
             </div>
             <div class="list_content">
+              <div class="rates">
+                <span v-for="(star, j) in rateStar(item.rates)"
+                      :key="j">
+                  <font-awesome-icon v-if="star==='star'" icon="star" />
+                  <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                </span>
+                <b>{{item.rates}}</b>
+              </div>
               <div class="movie_title">
                 <h2>{{ item.name }}</h2>
               </div>
@@ -131,6 +148,22 @@
       seriesData() {
         return this.$store.getters.filterFavoriteSeries
       },
+    },
+    methods: {
+      rateStar(rates) {
+        let num = rates;
+        let arr = [];
+
+        for(let i=num; i>0; i -= 2) {
+
+          if(i>=2) {
+            arr.push('star')
+          } else if(i>=1 && i<2) {
+            arr.push('half')
+          }
+        }
+        return arr;
+      }
     }
   };
 </script>
@@ -143,8 +176,19 @@
         overflow: visible;
       }
       .list_content {
-        * {
+        h2, p, a, b {
           color: #fff;
+        }
+        h2 {
+          margin-bottom: 10px;
+          line-height: 1.2;
+          min-height: 56px;
+        }
+        .rates {
+          margin: 5px 0;
+          b {
+            margin-left: 10px;
+          }
         }
       }
     }

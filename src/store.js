@@ -29,7 +29,8 @@ export default new Vuex.Store({
               id: key,
               name: obj[key].name,
               brief: obj[key].brief,
-              wallpaper: obj[key].wallpaper
+              wallpaper: obj[key].wallpaper,
+              rates: obj[key].rates,
             })
           }
           console.log(data)
@@ -47,7 +48,8 @@ export default new Vuex.Store({
               id: key,
               name: obj[key].name,
               brief: obj[key].brief,
-              wallpaper: obj[key].wallpaper
+              wallpaper: obj[key].wallpaper,
+              rates: obj[key].rates,
             })
           }
           console.log(data)

@@ -15,7 +15,7 @@ export default {
   name: 'App',
   components: {
     HelloWorld,
-    Header
+    Header,
   },
   data: () => ({
     //
@@ -33,6 +33,11 @@ export default {
   }
   .bg_color_none {
     background: none!important;
+  }
+  .rates {
+    svg {
+      color: #e4bc24!important;
+    }
   }
   .swiper-container {
     
