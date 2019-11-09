@@ -27,6 +27,9 @@ export default {
   body {
     background: #000;
   }
+  a {
+    text-decoration: none;
+  }
   img {
     width: 100%;
     height: auto;

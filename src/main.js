@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
 import vuetify from './plugins/vuetify';
 import vueSwiper from 'vue-awesome-swiper';
-import 'swiper/dist/css/swiper.css'
+import 'swiper/dist/css/swiper.css';
 import { initializeApp, auth } from 'firebase';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // import { 
 //   faStarHalf,
 // } from '@fortawesome/free-regular-svg-icons';

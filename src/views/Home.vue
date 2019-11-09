@@ -138,9 +138,6 @@
         },
       }
     },
-    components: {
-      HelloWorld,
-    },
     computed: {
       moviesData() {
         return this.$store.getters.filterFavoriteMovies
@@ -168,29 +165,5 @@
   };
 </script>
 <style lang="scss" scoped>
-  .home {
-    .lists {
-      overflow: hidden;
-      position: relative;
-      .swiper-container {
-        overflow: visible;
-      }
-      .list_content {
-        h2, p, a, b {
-          color: #fff;
-        }
-        h2 {
-          margin-bottom: 10px;
-          line-height: 1.2;
-          min-height: 56px;
-        }
-        .rates {
-          margin: 5px 0;
-          b {
-            margin-left: 10px;
-          }
-        }
-      }
-    }
-  }
+  @import "../assets/scss/home.scss";
 </style>
