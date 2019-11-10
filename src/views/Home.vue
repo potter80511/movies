@@ -19,7 +19,7 @@
           <h2>Favorite Series</h2>
         </div>
         <swiper 
-          :options="swiperFavoriteSeries"
+          :options="swiperFavorites"
           v-if="seriesData.length > 0">
           <swiper-slide
             v-for="(item, i) in seriesData"
@@ -54,7 +54,7 @@
         <div class="section-header">
           <h2>Favorite Movies</h2>
         </div>
-        <swiper :options="swiperFavoriteMovies">
+        <swiper :options="swiperFavorites">
           <swiper-slide
             v-for="(item, i) in moviesData"
             :key="i">
@@ -68,7 +68,7 @@
                   <font-awesome-icon v-if="star==='star'" icon="star" />
                   <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
                 </span>
-                <b>{{item.rates}}</b>
+                <b>{{item.rates.toFixed(1)}}</b>
               </div>
               <div class="movie_title">
                 <h2>{{ item.name }}</h2>
@@ -100,7 +100,7 @@
             src: 'https://wallpapertag.com/wallpaper/full/c/3/9/467334-free-download-breaking-bad-wallpaper-1920x1080-1920x1080-for-mac.jpg',
           },
         ],
-        swiperFavoriteSeries: {
+        swiperFavorites: {
           slidesPerView: 5,
           spaceBetween: 30,
           speed: 800,
@@ -110,7 +110,7 @@
             disableOnInteraction: false,
           },
           breakpoints: {
-            1024: {
+            1199: {
               slidesPerView: 4,
             },
             768: {
@@ -120,20 +120,6 @@
           navigation: {
             nextEl: '.series_list .swiper-button-next',
             prevEl: '.series_list .swiper-button-prev',
-          }
-        },
-        swiperFavoriteMovies: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-          speed: 800,
-          loop: true,
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: '.movie_list .swiper-button-next',
-            prevEl: '.movie_list .swiper-button-prev',
           }
         },
       }
