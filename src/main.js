@@ -8,9 +8,9 @@ import 'swiper/dist/css/swiper.css';
 import { initializeApp, auth } from 'firebase';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-// import { 
-//   faStarHalf,
-// } from '@fortawesome/free-regular-svg-icons';
+import { 
+  faStar as farStar,
+} from '@fortawesome/free-regular-svg-icons';
 import { 
   faStar,
   faStarHalfAlt,
@@ -18,6 +18,7 @@ import {
 
 library.add(
   faStar,
+  farStar,
   faStarHalfAlt,
 )
 

@@ -32,6 +32,7 @@ export default new Vuex.Store({
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
               favorite: obj[key].favorite,
+              my_rate: obj[key].my_rate,
             })
           }
           console.log(movies, 'store')
@@ -52,6 +53,7 @@ export default new Vuex.Store({
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
               favorite: obj[key].favorite,
+              my_rate: obj[key].my_rate,
             })
           }
           console.log(series, 'store')

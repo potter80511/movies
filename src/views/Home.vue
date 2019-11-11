@@ -29,12 +29,13 @@
             </div>
             <div class="list_content">
               <div class="rates">
-                <span v-for="(star, j) in rateStar(item.rates)"
+                <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
                       :key="j">
                   <font-awesome-icon v-if="star==='star'" icon="star" />
                   <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                  <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
                 </span>
-                <b>{{item.rates}}</b>
+                <b>{{item.rates.toFixed(1)}}</b>
               </div>
               <div class="movie_title">
                 <h2>{{ item.name }}</h2>
@@ -64,10 +65,11 @@
             </div>
             <div class="list_content">
               <div class="rates">
-                <span v-for="(star, j) in rateStar(item.rates)"
+                <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
                       :key="j">
                   <font-awesome-icon v-if="star==='star'" icon="star" />
                   <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                  <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
                 </span>
                 <b>{{item.rates.toFixed(1)}}</b>
               </div>
@@ -89,6 +91,7 @@
 
 <script>
   import HelloWorld from '../components/HelloWorld';
+  import { rateStarWithEmpty } from '../helper';
 
   export default {
     data () {
@@ -149,26 +152,19 @@
     },
     computed: {
       moviesData() {
-        return this.$store.getters.filterFavoriteMovies
+        return this.$store.getters.filterFavoriteMovies.sort((a,b) => {
+          return b.rates - a.rates ;
+        })
       },
       seriesData() {
-        return this.$store.getters.filterFavoriteSeries
+        return this.$store.getters.filterFavoriteSeries.sort((a,b) => {
+          return b.rates - a.rates ;
+        })
       },
     },
     methods: {
-      rateStar(rates) {
-        let num = rates;
-        let arr = [];
-
-        for(let i=num; i>0; i -= 2) {
-
-          if(i>=2) {
-            arr.push('star')
-          } else if(i>=1 && i<2) {
-            arr.push('half')
-          }
-        }
-        return arr;
+      rateStarWithEmpty(rates) {
+        return rateStarWithEmpty(rates)
       }
     }
   };
