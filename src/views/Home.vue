@@ -19,7 +19,7 @@
           <h2>Favorite Series</h2>
         </div>
         <swiper 
-          :options="swiperFavorites"
+          :options="swiperFavoriteSeries"
           v-if="seriesData.length > 0">
           <swiper-slide
             v-for="(item, i) in seriesData"
@@ -28,6 +28,7 @@
               <img :src="item.wallpaper">
             </div>
             <div class="list_content">
+              <div style="color: #fff;">{{item.favorite}}</div>
               <div class="rates">
                 <span v-for="(star, j) in rateStar(item.rates)"
                       :key="j">
@@ -54,7 +55,7 @@
         <div class="section-header">
           <h2>Favorite Movies</h2>
         </div>
-        <swiper :options="swiperFavorites">
+        <swiper :options="swiperFavoriteMovies">
           <swiper-slide
             v-for="(item, i) in moviesData"
             :key="i">
@@ -100,15 +101,15 @@
             src: 'https://wallpapertag.com/wallpaper/full/c/3/9/467334-free-download-breaking-bad-wallpaper-1920x1080-1920x1080-for-mac.jpg',
           },
         ],
-        swiperFavorites: {
+        swiperFavoriteSeries: {
           slidesPerView: 5,
           spaceBetween: 30,
           speed: 800,
           loop: true,
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-          },
+          // autoplay: {
+          //   delay: 4000,
+          //   disableOnInteraction: false,
+          // },
           breakpoints: {
             1199: {
               slidesPerView: 4,
@@ -120,6 +121,28 @@
           navigation: {
             nextEl: '.series_list .swiper-button-next',
             prevEl: '.series_list .swiper-button-prev',
+          }
+        },
+        swiperFavoriteMovies: {
+          slidesPerView: 5,
+          spaceBetween: 30,
+          speed: 800,
+          loop: true,
+          // autoplay: {
+          //   delay: 4000,
+          //   disableOnInteraction: false,
+          // },
+          breakpoints: {
+            1199: {
+              slidesPerView: 4,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+          },
+          navigation: {
+            nextEl: '.movie_list .swiper-button-next',
+            prevEl: '.movie_list .swiper-button-prev',
           }
         },
       }

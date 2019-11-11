@@ -31,9 +31,10 @@ export default new Vuex.Store({
               brief: obj[key].brief,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
+              favorite: obj[key].favorite,
             })
           }
-          console.log(data)
+          console.log(movies, 'store')
           commit('setLoadedMovies', movies)
         })
     },
@@ -50,9 +51,10 @@ export default new Vuex.Store({
               brief: obj[key].brief,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
+              favorite: obj[key].favorite,
             })
           }
-          console.log(data)
+          console.log(series, 'store')
           commit('setLoadedSeries', series)
         })
     },
@@ -60,13 +62,13 @@ export default new Vuex.Store({
   getters: {
     filterFavoriteMovies(state) {
       const filterData = state.movies.filter((o) => {
-        return o.favorite = true
+        return o.favorite === true
       });
       return filterData;
     },
     filterFavoriteSeries(state) {
       const filterData = state.series.filter((o) => {
-        return o.favorite = true
+        return o.favorite === true
       });
       return filterData;
     },
