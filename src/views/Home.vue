@@ -28,7 +28,6 @@
               <img :src="item.wallpaper">
             </div>
             <div class="list_content">
-              <div style="color: #fff;">{{item.favorite}}</div>
               <div class="rates">
                 <span v-for="(star, j) in rateStar(item.rates)"
                       :key="j">
@@ -55,7 +54,8 @@
         <div class="section-header">
           <h2>Favorite Movies</h2>
         </div>
-        <swiper :options="swiperFavoriteMovies">
+        <swiper :options="swiperFavoriteMovies"
+                v-if="moviesData.length > 0">
           <swiper-slide
             v-for="(item, i) in moviesData"
             :key="i">
