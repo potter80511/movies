@@ -2,6 +2,46 @@
 @import 'mixin.scss';
 
 .home {
+  .banner {
+    position: relative;
+    .swiper-pagination {
+      position: unset;
+      span {
+        width: 15px;
+        height: 15px;
+        background: #888;
+      }
+    }
+    .swiper-button {
+      background: rgba(136,136,136,.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: .6;
+      transition: all .3s;
+      &:hover {
+        opacity: 1;
+      }
+      &:after {
+        display: none;
+      }
+      svg {
+        color: #fff;
+        font-size: 30px;
+      }
+      &.swiper-button-prev {
+        border-width: 0 0 3px 3px;
+        left: 10px;
+      }
+      &.swiper-button-next {
+        border-width: 3px 3px 0 0;
+        right: 10px;
+      }
+    }
+  }
   .lists {
     overflow: hidden;
     position: relative;

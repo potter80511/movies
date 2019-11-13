@@ -29,3 +29,9 @@ export const rateStar = (rates) => {
   }
   return arr;
 }
+
+export const bannerRWD = (w) => {
+  let bannerWidth = w;
+  let bannerHeight = 0.5625 * bannerWidth;
+  return bannerHeight;
+}

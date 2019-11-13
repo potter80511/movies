@@ -19,23 +19,34 @@ img {
   }
 }
 .swiper-container {
-  
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+  }
 }
 .swiper-button {
   background-image: none!important;
-  width: 20px!important;
-  height: 20px!important;
-  border-color: #fff;
-  border-style: solid;
-  transform: rotate(45deg);
   &:focus {outline: none;}
+  &:after {
+    content: "";
+    width: 20px!important;
+    height: 20px!important;
+    border-color: #fff;
+    border-style: solid;
+    transform: rotate(45deg);
+    display: block;
+  }
   &.swiper-button-prev {
-    border-width: 0 0 3px 3px;
     left: 20px;
+    &:after {
+      border-width: 0 0 3px 3px;
+    }
   }
   &.swiper-button-next {
-    border-width: 3px 3px 0 0;
     right: 20px;
+    &:after {
+      border-width: 3px 3px 0 0;
+    }
   }
 }
 .section-header {

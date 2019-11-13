@@ -14,12 +14,16 @@ import {
 import { 
   faStar,
   faStarHalfAlt,
+  faChevronRight,
+  faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
   faStar,
   farStar,
   faStarHalfAlt,
+  faChevronRight,
+  faChevronLeft,
 )
 
 Vue.use(vueSwiper);

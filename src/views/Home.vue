@@ -1,17 +1,22 @@
 <template>
   <div class="home">
-    <div class="swiper">
-      <v-carousel
-        height="auto"
-        interval="5000">
-        <v-carousel-item
-          v-for="(item,i) in items"
+    <div class="banner" ref="bannerSlide">
+      <swiper :options="swiperBanner"
+                v-if="indexBannerData.length > 0">
+        <swiper-slide
+          v-for="(item, i) in indexBannerData"
           :key="i"
-          :src="item.src"
-          reverse-transition="fade-transition"
-          transition="fade-transition"
-        ></v-carousel-item>
-      </v-carousel>
+          :style="{'background-image': 'url(' + item.banner + ')', height: bannerRWD() + 'px'}"
+          >
+        </swiper-slide>
+      </swiper>
+      <div class="swiper-button-prev swiper-button" slot="button-prev">
+        <font-awesome-icon icon="chevron-left" />
+      </div>
+      <div class="swiper-button-next swiper-button" slot="button-next">
+        <font-awesome-icon icon="chevron-right" />
+      </div>
+      <div class="swiper-pagination" slot="pagination"></div>
     </div>
     <div id="series" class="lists series_list">
       <div class="container">
@@ -91,19 +96,31 @@
 
 <script>
   import HelloWorld from '../components/HelloWorld';
-  import { rateStarWithEmpty } from '../helper';
+  import { rateStarWithEmpty, bannerRWD } from '../helper';
 
   export default {
     data () {
       return {
-        items: [
-          {
-            src: 'https://wallpapercave.com/wp/wp1886209.jpg',
+        swiperBanner: {
+          speed: 800,
+          loop: true,
+          effect: 'fade',
+          // autoplay: {
+          //   delay: 5000,
+          //   disableOnInteraction: false,
+          // },
+          navigation: {
+            nextEl: '.banner .swiper-button-next',
+            prevEl: '.banner .swiper-button-prev',
           },
-          {
-            src: 'https://wallpapertag.com/wallpaper/full/c/3/9/467334-free-download-breaking-bad-wallpaper-1920x1080-1920x1080-for-mac.jpg',
+          pagination: {
+            el: '.banner .swiper-pagination',
+            clickable: true,
+            renderBullet(index, className) {
+              return `<span class="${className} swiper-pagination-bullet-custom">${index + 1}</span>`
+            }
           },
-        ],
+        },
         swiperFavoriteSeries: {
           slidesPerView: 5,
           spaceBetween: 30,
@@ -150,25 +167,37 @@
         },
       }
     },
+    mounted() {
+      console.log(this.$refs.bannerSlide)
+    },
     computed: {
       moviesData() {
         return this.$store.getters.filterFavoriteMovies.sort((a,b) => {
-          return b.rates - a.rates ;
+          return b.rates - a.rates;
         })
       },
       seriesData() {
         return this.$store.getters.filterFavoriteSeries.sort((a,b) => {
-          return b.rates - a.rates ;
+          return b.rates - a.rates;
         })
+      },
+      indexBannerData() {
+        return this.$store.getters.filterIndexBanner;
       },
     },
     methods: {
       rateStarWithEmpty(rates) {
         return rateStarWithEmpty(rates)
+      },
+      bannerRWD() {
+        const bannerWidth = this.$refs.bannerSlide.clientWidth;
+        console.log(bannerWidth)
+        return bannerRWD(bannerWidth);
       }
     }
   };
 </script>
 <style lang="scss" scoped>
   @import "../assets/scss/home.scss";
+  
 </style>

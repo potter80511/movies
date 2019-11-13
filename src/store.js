@@ -54,6 +54,8 @@ export default new Vuex.Store({
               rates: obj[key].rates,
               favorite: obj[key].favorite,
               my_rate: obj[key].my_rate,
+              index_banner: obj[key].index_banner,
+              banner: obj[key].banner,
             })
           }
           console.log(series, 'store')
@@ -71,6 +73,12 @@ export default new Vuex.Store({
     filterFavoriteSeries(state) {
       const filterData = state.series.filter((o) => {
         return o.favorite === true
+      });
+      return filterData;
+    },
+    filterIndexBanner(state) {
+      const filterData = state.series.filter((o) => {
+        return o.index_banner === true
       });
       return filterData;
     },
