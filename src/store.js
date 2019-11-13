@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     movies: [],
     series: [],
+    currentFilm: null,
   },
   mutations: { //更改狀態
     setLoadedMovies(state, payload) {
@@ -15,6 +16,9 @@ export default new Vuex.Store({
     },
     setLoadedSeries(state, payload) {
       state.series = payload
+    },
+    setCurrentFilm(state, payload) {
+      state.currentFilm = payload
     },
   },
   actions: {
@@ -60,6 +64,15 @@ export default new Vuex.Store({
           }
           console.log(series, 'store')
           commit('setLoadedSeries', series)
+        })
+    },
+    loadedFilm({commit}, imdb_id) {
+      firebase.database().ref('movies').orderByChild('imdb_id').equalTo(imdb_id).once('value')
+        .then((data) => {
+          const obj = data.val()
+          const film_data = obj[Object.keys(obj)[0]]
+          
+          commit('setCurrentFilm', film_data)
         })
     },
   },

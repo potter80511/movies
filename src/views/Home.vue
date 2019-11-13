@@ -95,7 +95,6 @@
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld';
   import { rateStarWithEmpty, bannerRWD } from '../helper';
 
   export default {
@@ -164,9 +163,6 @@
         },
       }
     },
-    mounted() {
-      console.log(this.$refs.bannerSlide)
-    },
     computed: {
       moviesData() {
         return this.$store.getters.filterFavoriteMovies.sort((a,b) => {
@@ -188,7 +184,6 @@
       },
       bannerRWD() {
         const bannerWidth = this.$refs.bannerSlide.clientWidth;
-        console.log(bannerWidth)
         return bannerRWD(bannerWidth);
       }
     }
