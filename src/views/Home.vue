@@ -105,10 +105,10 @@
           speed: 800,
           loop: true,
           effect: 'fade',
-          // autoplay: {
-          //   delay: 5000,
-          //   disableOnInteraction: false,
-          // },
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
           navigation: {
             nextEl: '.banner .swiper-button-next',
             prevEl: '.banner .swiper-button-prev',
@@ -116,9 +116,6 @@
           pagination: {
             el: '.banner .swiper-pagination',
             clickable: true,
-            renderBullet(index, className) {
-              return `<span class="${className} swiper-pagination-bullet-custom">${index + 1}</span>`
-            }
           },
         },
         swiperFavoriteSeries: {
@@ -197,7 +194,6 @@
     }
   };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   @import "../assets/scss/home.scss";
-  
 </style>
