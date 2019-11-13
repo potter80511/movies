@@ -1,8 +1,10 @@
 <template>
   <header>
     <div class="logo">
-      <span>My</span>
-      <b>IMDB</b>
+      <router-link to="/">
+        <span>My</span>
+        <b>IMDB</b>
+      </router-link>
     </div>
     <div class="menu">
       <div class="main_nav">

@@ -1,0 +1,15 @@
+@import 'color.scss';
+
+.film_details {
+  .main {
+    .row {
+      .wallpaper {
+        flex: 1;
+      }
+      .main_info {
+        flex: 3;
+        padding-left: 15px;
+      }
+    }
+  }
+}

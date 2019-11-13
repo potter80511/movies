@@ -60,6 +60,8 @@ export default new Vuex.Store({
               my_rate: obj[key].my_rate,
               index_banner: obj[key].index_banner,
               banner: obj[key].banner,
+              imdb_id: obj[key].imdb_id,
+              tw_name: obj[key].tw_name,
             })
           }
           console.log(series, 'store')

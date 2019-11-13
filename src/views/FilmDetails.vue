@@ -1,6 +1,5 @@
 <template>
   <div class="film_details">
-    {{filmData}}
     <!-- <div class="banner" ref="bannerSlide">
       <swiper :options="swiperBanner"
                 v-if="indexBannerData.length > 0">
@@ -20,7 +19,20 @@
       <div class="swiper-pagination" slot="pagination"></div>
     </div> -->
     <div class="container">
-      <div class="main"></div>
+      <div class="main">
+        <div class="row">
+          <div class="wallpaper">
+            <img :src="filmData.wallpaper" />
+          </div>
+          <div class="main_info">
+            <h1>{{filmData.name}}</h1>
+            <h2 class="tw_name">
+              <b>中文片名：</b>
+              <span>{{filmData.tw_name}}</span>
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,3 +50,7 @@
     }
   }
 </script>
+
+<style lang="scss">
+  @import "../assets/scss/film_details.scss";
+</style>
