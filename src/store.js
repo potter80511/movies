@@ -39,7 +39,7 @@ export default new Vuex.Store({
               my_rate: obj[key].my_rate,
             })
           }
-          console.log(movies, 'store')
+          // console.log(movies, 'store')
           commit('setLoadedMovies', movies)
         })
     },
@@ -64,7 +64,7 @@ export default new Vuex.Store({
               tw_name: obj[key].tw_name,
             })
           }
-          console.log(series, 'store')
+          // console.log(series, 'store')
           commit('setLoadedSeries', series)
         })
     },
@@ -73,7 +73,7 @@ export default new Vuex.Store({
         .then((data) => {
           const obj = data.val()
           const film_data = obj[Object.keys(obj)[0]]
-          
+
           commit('setCurrentFilm', film_data)
         })
     },

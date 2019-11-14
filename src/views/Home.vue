@@ -6,8 +6,8 @@
         <swiper-slide
           v-for="(item, i) in indexBannerData"
           :key="i"
-          :style="{'background-image': 'url(' + item.banner + ')', height: bannerRWD() + 'px'}"
           >
+          <img :src="item.banner" />
         </swiper-slide>
       </swiper>
       <div class="swiper-button-prev swiper-button" slot="button-prev">
@@ -97,7 +97,7 @@
 </template>
 
 <script>
-  import { rateStarWithEmpty, bannerRWD } from '../helper';
+  import { rateStarWithEmpty } from '../helper';
 
   export default {
     data () {
@@ -184,10 +184,10 @@
       rateStarWithEmpty(rates) {
         return rateStarWithEmpty(rates)
       },
-      bannerRWD() {
-        const bannerWidth = this.$refs.bannerSlide.clientWidth;
-        return bannerRWD(bannerWidth);
-      }
+      // bannerRWD() {
+      //   const bannerWidth = this.$refs.bannerSlide.clientWidth;
+      //   return bannerRWD(bannerWidth);
+      // }
     }
   };
 </script>

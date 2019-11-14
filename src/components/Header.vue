@@ -13,15 +13,15 @@
         >
           <span class="mr-2">HOME</span>
         </router-link>
-        <router-link
+        <!-- <router-link
           to="/movies"
         >
           <span class="mr-2">Movies</span>
-        </router-link>
+        </router-link> -->
       </div>
-      <div class="tool-nav">
+      <!-- <div class="tool-nav">
         <router-link to="/">Sign in</router-link>
-      </div>
+      </div> -->
     </div>
   </header>
 </template>

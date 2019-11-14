@@ -1,13 +1,25 @@
 @import 'color.scss';
 
 .film_details {
+  .banner {
+    position: relative;
+    .swiper-button {
+      transition: all .3s;
+      opacity: 0;
+    }
+    &:hover {
+      .swiper-button {
+        opacity: 1;
+      }
+    }
+  }
   .main {
     .row {
       .wallpaper {
-        flex: 1;
+        width: 27%;
       }
       .main_info {
-        flex: 3;
+        width: 70%;
         padding-left: 15px;
       }
     }

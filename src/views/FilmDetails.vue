@@ -1,23 +1,20 @@
 <template>
   <div class="film_details">
-    <!-- <div class="banner" ref="bannerSlide">
+    <div class="banner" ref="bannerSlide">
       <swiper :options="swiperBanner"
-                v-if="indexBannerData.length > 0">
+                v-if="bannerData.length > 0">
         <swiper-slide
-          v-for="(item, i) in indexBannerData"
+          v-for="(item, i) in bannerData"
           :key="i"
-          :style="{'background-image': 'url(' + item.banner + ')', height: bannerRWD() + 'px'}"
           >
+          <img :src="item" />
         </swiper-slide>
       </swiper>
       <div class="swiper-button-prev swiper-button" slot="button-prev">
-        <font-awesome-icon icon="chevron-left" />
       </div>
       <div class="swiper-button-next swiper-button" slot="button-next">
-        <font-awesome-icon icon="chevron-right" />
       </div>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </div> -->
+    </div>
     <div class="container">
       <div class="main">
         <div class="row">
@@ -30,6 +27,7 @@
               <b>中文片名：</b>
               <span>{{filmData.tw_name}}</span>
             </h2>
+            <div>{{bannerData}}</div>
           </div>
         </div>
       </div>
@@ -40,13 +38,57 @@
 <script>
 
   export default {
+    data() {
+      return {
+        swiperBanner: {
+          speed: 800,
+          loop: true,
+          effect: 'fade',
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          navigation: {
+            nextEl: '.banner .swiper-button-next',
+            prevEl: '.banner .swiper-button-prev',
+          },
+        },
+        filmData: {
+          favorite: false,
+          imdb_id: "",
+          my_rate: 0,
+          name: "",
+          page_banners: {},
+          rates: 0,
+          tw_name: "",
+          type: "",
+          wallpaper: ""
+        },
+        bannerData: []
+      }
+    },
     computed: {
-      filmData() {
+      getFilmData() {
         return this.$store.state.currentFilm
       },
     },
-    mounted() {
+    created() {
       this.$store.dispatch('loadedFilm', this.$route.params.id)
+    },
+    watch: {
+      getFilmData(val) {
+        if (val) {
+          const obj = val.page_banners
+          const bannerArr = []
+          const objKeys = Object.keys(obj)
+
+          objKeys.forEach((objKey) => {
+            bannerArr.push(obj[objKey])
+          })
+          this.bannerData = bannerArr
+          this.filmData = val
+        }
+      }
     }
   }
 </script>
