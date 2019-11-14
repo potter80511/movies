@@ -15,6 +15,8 @@
   }
   >.container {
     padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30px;
     background: #1f2229;
     box-shadow: 0 0 15px #000;
   }
@@ -23,6 +25,9 @@
     width: 90%;
     .main_info {
       margin: 0;
+      padding-bottom: 50px;
+      margin-bottom: 50px;
+      border-bottom: 1px solid #818181;
       .wallpaper {
         width: 27%;
         box-shadow: 5px 5px 5px rgba(0,0,0,.5);
@@ -31,23 +36,32 @@
         width: 70%;
         padding-left: 25px;
         *{text-shadow: 3px 3px 5px #000;}
+        h1 {
+          position: relative;
+          .favorite {
+            display: inline-block;
+            svg {
+              color: $imdb-yellow;
+              font-size: 16px;
+              position: relative;
+              bottom: 10px;
+            }
+          }
+        }
         h2 {
           font-size: 22px;
           margin-bottom: 25px;
           padding-bottom: 20px;
           border-bottom: 1px dashed #818181;
         }
-        .director, .type, .rates {
+        .director, .type, .rates, .my_rate {
           margin-bottom: 10px;
         }
-        .rates {
+        .director, .type {
           b {
-            margin-right: 10px;
-            svg {
-              font-size: 30px;
-              margin-right: 10px;
-            }
           }
+        }
+        .rates, .my_rate {
           span {
             display: inline-block;
             margin-right: 1px;
@@ -57,6 +71,52 @@
             svg {
               font-size: 18px;
             }
+          }
+        }
+        .rates {
+          b {
+            margin-right: 10px;
+            svg {
+              font-size: 30px;
+              margin-right: 10px;
+            }
+          }
+        }
+        .my_rate {
+          >svg {
+            color: $check-green;
+            margin-right: 10px;
+          }
+          span {
+            svg {
+              color: #e0c642;
+            }
+          }
+        }
+      }
+    }
+    .main_intro {
+      h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        .circle, .circle::before {
+          display: inline-block;
+          border-radius: 50%;
+          border: 1px solid #fff;
+        }
+        .circle {
+          width: 15px;
+          height: 15px;
+          position: relative;
+          margin-right: 10px;
+          &::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-45%, -45%);
           }
         }
       }

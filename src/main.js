@@ -16,6 +16,9 @@ import {
   faStarHalfAlt,
   faChevronRight,
   faChevronLeft,
+  faHeart,
+  faCrown,
+  faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -29,6 +32,9 @@ library.add(
   faChevronRight,
   faChevronLeft,
   faImdb,
+  faHeart,
+  faCrown,
+  faCheck,
 )
 
 Vue.use(vueSwiper);

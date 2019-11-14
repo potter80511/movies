@@ -22,16 +22,21 @@
             <img :src="filmData.wallpaper" />
           </div>
           <div class="words">
-            <h1>{{filmData.name}}</h1>
+            <h1>
+              <div class="favorite" v-if="filmData.favorite">
+                <font-awesome-icon icon="crown" />
+              </div>
+              {{filmData.name}}
+            </h1>
             <h2 class="tw_name">
               <b>中文片名：</b>
               <span>{{filmData.tw_name}}</span>
             </h2>
-            <div class="director">
+            <div class="director dimond">
               <b>導演：</b>
               <span>{{filmData.director}}</span>
             </div>
-            <div class="type">
+            <div class="type dimond">
               <b>類型：</b>
               <span v-if="filmData.type === 'series'">影集</span>
               <span v-else-if="filmData.type === 'movies'">電影</span>
@@ -44,14 +49,25 @@
                 <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
                 <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
               </span>
-              <b>{{filmData.rates.toFixed(1)}}</b>
+              <b>{{filmData.rates.toFixed(1)}} 分</b>
+            </div>
+            <div class="my_rate">
+              <font-awesome-icon icon="check" />
+              <b>我的評分：</b>
+              <span v-for="(star, j) in rateTenStar(filmData.my_rate)"
+                      :key="j">
+                <font-awesome-icon v-if="star==='star'" icon="star" />
+                <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
+              </span>
+              <b>{{filmData.my_rate.toFixed(1)}} 分</b>
             </div>
           </div>
         </div>
         <div class="main_intro">
           <div class="blocks">
-            <h3>劇情介紹</h3>
-            <p>故事講述一名高中化學老師沃特·懷特生活陷入困頓，為了扶養懷孕的妻子和患有腦性麻痹的兒子，在被診斷出肺癌末期後，與過去的學生、如今販毒的傑西合謀，以化學知識製作冰毒獲取巨大利益，然而鋌而走險的販毒過程卻逐漸失控且瀕臨多次生命危險。</p>
+            <h3><span class="circle"></span>劇情介紹</h3>
+            <p>{{filmData.summary}}</p>
           </div>
         </div>
       </div>
@@ -86,6 +102,7 @@
           name: "",
           page_banners: {},
           rates: 0,
+          summary: "",
           tw_name: "",
           type: "",
           wallpaper: ""

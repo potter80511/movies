@@ -26,6 +26,18 @@ img {
     color: $rate-star!important;
   }
 }
+.dimond {
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    // background: $dimond-blue;
+    background: #b72727;
+    transform: rotate(45deg) skew(5deg, 5deg);
+    margin-right: 10px;
+  }
+}
 .swiper-container {
   .swiper-slide {
     background-position: center;
