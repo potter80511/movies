@@ -3,7 +3,7 @@
     <div class="logo">
       <router-link to="/">
         <span>My</span>
-        <b>IMDB</b>
+        <strong>IMDB</strong>
       </router-link>
     </div>
     <div class="menu">

@@ -14,6 +14,22 @@ export const rateStarWithEmpty = rates => {
   }
   return arr;
 }
+export const rateTenStar = rates => {
+  let num = rates;
+  let arr = [];
+
+  for(let i=10; i>0; i --) {
+    if(num>=1) {
+      arr.push('star')
+    } else if(num>=0.5) {
+      arr.push('half')
+    } else {
+      arr.push('empty')
+    }
+    num = num - 1
+  }
+  return arr;
+}
 
 export const rateStar = (rates) => {
   let num = rates;

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import vuetify from './plugins/vuetify';
 import vueSwiper from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css';
 import { initializeApp, auth } from 'firebase';
@@ -11,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { 
   faStar as farStar,
 } from '@fortawesome/free-regular-svg-icons';
+
 import { 
   faStar,
   faStarHalfAlt,
@@ -18,12 +18,17 @@ import {
   faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { 
+  faImdb,
+} from '@fortawesome/free-brands-svg-icons';
+
 library.add(
   faStar,
   farStar,
   faStarHalfAlt,
   faChevronRight,
   faChevronLeft,
+  faImdb,
 )
 
 Vue.use(vueSwiper);
@@ -34,7 +39,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  vuetify,
   render: h => h(App),
   created() {
     initializeApp({

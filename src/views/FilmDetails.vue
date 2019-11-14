@@ -17,17 +17,41 @@
     </div>
     <div class="container">
       <div class="main">
-        <div class="row">
+        <div class="row main_info">
           <div class="wallpaper">
             <img :src="filmData.wallpaper" />
           </div>
-          <div class="main_info">
+          <div class="words">
             <h1>{{filmData.name}}</h1>
             <h2 class="tw_name">
               <b>中文片名：</b>
               <span>{{filmData.tw_name}}</span>
             </h2>
-            <div>{{bannerData}}</div>
+            <div class="director">
+              <b>導演：</b>
+              <span>{{filmData.director}}</span>
+            </div>
+            <div class="type">
+              <b>類型：</b>
+              <span v-if="filmData.type === 'series'">影集</span>
+              <span v-else-if="filmData.type === 'movies'">電影</span>
+            </div>
+            <div class="rates">
+              <b><font-awesome-icon :icon="['fab', 'imdb']" /> 評分：</b>
+              <span v-for="(star, j) in rateTenStar(filmData.rates)"
+                      :key="j">
+                <font-awesome-icon v-if="star==='star'" icon="star" />
+                <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
+              </span>
+              <b>{{filmData.rates.toFixed(1)}}</b>
+            </div>
+          </div>
+        </div>
+        <div class="main_intro">
+          <div class="blocks">
+            <h3>劇情介紹</h3>
+            <p>故事講述一名高中化學老師沃特·懷特生活陷入困頓，為了扶養懷孕的妻子和患有腦性麻痹的兒子，在被診斷出肺癌末期後，與過去的學生、如今販毒的傑西合謀，以化學知識製作冰毒獲取巨大利益，然而鋌而走險的販毒過程卻逐漸失控且瀕臨多次生命危險。</p>
           </div>
         </div>
       </div>
@@ -36,6 +60,7 @@
 </template>
 
 <script>
+  import { rateTenStar } from '../helper';
 
   export default {
     data() {
@@ -54,6 +79,7 @@
           },
         },
         filmData: {
+          director: "",
           favorite: false,
           imdb_id: "",
           my_rate: 0,
@@ -70,6 +96,11 @@
     computed: {
       getFilmData() {
         return this.$store.state.currentFilm
+      },
+    },
+    methods: {
+      rateTenStar(rates) {
+        return rateTenStar(rates)
       },
     },
     created() {

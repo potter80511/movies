@@ -1,10 +1,10 @@
 <template>
-  <v-app class="bg_color_none">
+  <div>
     <Header />
     <div class="content">
       <router-view />
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
