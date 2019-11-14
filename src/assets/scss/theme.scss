@@ -13,6 +13,9 @@ div, h1, h2, h3, h4, p, a {
 }
 a {
   text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
 img {
   width: 100%;
