@@ -18,6 +18,11 @@
         >
           Movies
         </router-link>
+        <router-link
+          to="/series"
+        >
+          Series
+        </router-link>
       </div>
       <!-- <div class="tool-nav">
         <router-link to="/">Sign in</router-link>

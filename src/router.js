@@ -32,6 +32,11 @@ export default new Router({
       path: '/movies',
       name: 'movies',
       component: Films
+    },
+    {
+      path: '/series',
+      name: 'series',
+      component: Films
     }
   ]
 })

@@ -147,6 +147,7 @@
       getFilmData(val) {
         if (val) {
           //輪播主圖資料
+          console.log(val)
           this.bannerData = objToArray(val.page_banners)
 
           //導演資料

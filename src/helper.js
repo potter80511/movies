@@ -47,7 +47,7 @@ export const rateStar = (rates) => {
 }
 
 export const objToArray = (oriData) => {
-  console.log(oriData, 'ori')
+
   if(oriData) {
     const dataArray = []
     const dataKeys = Object.keys(oriData)

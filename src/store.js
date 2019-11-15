@@ -39,6 +39,7 @@ export default new Vuex.Store({
               my_rate: obj[key].my_rate,
               imdb_id: obj[key].imdb_id,
               tw_name: obj[key].tw_name,
+              list_banner: obj[key].list_banner,
             })
           }
           // console.log(movies, 'store')
@@ -64,6 +65,7 @@ export default new Vuex.Store({
               banner: obj[key].banner,
               imdb_id: obj[key].imdb_id,
               tw_name: obj[key].tw_name,
+              list_banner: obj[key].list_banner,
             })
           }
           // console.log(series, 'store')
@@ -95,9 +97,30 @@ export default new Vuex.Store({
     },
     filterIndexBanner(state) {
       const filterData = state.series.filter((o) => {
+        // console.log(o.index_banner)
         return o.index_banner === true
       });
       return filterData;
     },
+    moviesBanner(state) {
+      const filterData = state.movies.filter((o) => {
+        // console.log(o.list_banner)
+        return o.list_banner !== undefined
+      });
+      const bannerArray = filterData.map((obj)=> {
+        return obj.list_banner
+      })
+      return bannerArray;
+    },
+    seriesBanner(state) {
+      const filterData = state.series.filter((o) => {
+        // console.log(o.list_banner)
+        return o.list_banner !== undefined
+      });
+      const bannerArray = filterData.map((obj)=> {
+        return obj.list_banner
+      })
+      return bannerArray;
+    }
   }
 })

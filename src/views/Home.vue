@@ -73,6 +73,7 @@
               </router-link>
             </div>
             <div class="list_content">
+              <div style="color: #fff;">{{item.id}}</div>
               <div class="rates">
                 <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
                       :key="j">

@@ -1,14 +1,14 @@
 <template>
   <div class="films">
-    fds
-    <!-- <div class="banner" ref="bannerSlide">
+    <div class="banner" ref="bannerSlide">
       <swiper :options="swiperBanner"
                 v-if="bannerData.length > 0">
         <swiper-slide
           v-for="(item, i) in bannerData"
           :key="i"
+          :style="{backgroundImage: 'url(' + item + ')', height: 500 + 'px'}"
           >
-          <img :src="item.banner" />
+          <!-- <img :src="item" /> -->
         </swiper-slide>
       </swiper>
       <div class="swiper-button-prev swiper-button" slot="button-prev">
@@ -18,7 +18,16 @@
         <font-awesome-icon icon="chevron-right" />
       </div>
       <div class="swiper-pagination" slot="pagination"></div>
-    </div> -->
+    </div>
+    <div class="film_list">
+      <div class="container">
+        <div class="row list_content">
+          <div class="item">
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,10 +49,6 @@
             nextEl: '.banner .swiper-button-next',
             prevEl: '.banner .swiper-button-prev',
           },
-          pagination: {
-            el: '.banner .swiper-pagination',
-            clickable: true,
-          },
         },
         filmData: {
           name: "",
@@ -53,11 +58,11 @@
           my_rate: 0,
           imdb_id: "",
           tw_name: "",
-        }
+        },
       }
     },
     mounted() {
-
+      
     },
     computed: {
       getMoviesData() {
@@ -68,9 +73,22 @@
           return b.rates - a.rates;
         })
       },
-      indexBannerData() {
-        return this.$store.getters.filterIndexBanner;
+      bannerData() {
+        const routeType = this.$route.name
+        if(routeType === 'movies') {
+          return this.$store.getters.moviesBanner
+        } else if (routeType === 'series') {
+          console.log(this.$store.getters.seriesBanner)
+          return this.$store.getters.seriesBanner
+        }
+        return []
       },
+    },
+    watch: {
+      moviesBannerData(val) {
+
+        
+      }
     },
     methods: {
       rateStarWithEmpty(rates) {
