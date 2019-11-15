@@ -22,8 +22,19 @@
     <div class="film_list">
       <div class="container">
         <div class="row list_content">
-          <div class="item">
-
+          <div class="item"
+            v-for="(item, i) in filmsData"
+            :key="i"
+            >
+            <div class="image">
+              <img :src="item.wallpaper" />
+            </div>
+            <div class="film_content">
+              <h2 class="name">{{item.tw_name}}</h2>
+              <div class="rates">
+                <b>{{item.rates}}</b>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -50,28 +61,21 @@
             prevEl: '.banner .swiper-button-prev',
           },
         },
-        filmData: {
-          name: "",
-          wallpaper: "",
-          rates: 0,
-          favorite: false,
-          my_rate: 0,
-          imdb_id: "",
-          tw_name: "",
-        },
+        // filmsData: []
       }
     },
-    mounted() {
-      
-    },
     computed: {
-      getMoviesData() {
-        return this.$store.state.movies //獲取電影資料
-      },
-      seriesData() {
-        return this.$store.getters.filterFavoriteSeries.sort((a,b) => {
-          return b.rates - a.rates;
-        })
+      filmsData() {
+        const routeType = this.$route.name
+        if(routeType === 'movies') {
+          return this.$store.state.movies.sort((a,b) => {
+            return b.rates - a.rates;
+          })
+        } else if (routeType === 'series') {
+          return this.$store.state.series.sort((a,b) => {
+            return b.rates - a.rates;
+          })
+        }
       },
       bannerData() {
         const routeType = this.$route.name
@@ -83,12 +87,6 @@
         }
         return []
       },
-    },
-    watch: {
-      moviesBannerData(val) {
-
-        
-      }
     },
     methods: {
       rateStarWithEmpty(rates) {
