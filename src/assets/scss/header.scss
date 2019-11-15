@@ -44,12 +44,9 @@ header {
       box-shadow: none;
       border-radius: 0!important;
       margin-left: 20px;
-      &.v-btn--active, &:hover {
+      &.router-link-exact-active, &:hover {
         color: #fff;
         text-shadow: 0 0 8px #fff;
-        &:before {
-          background: none;
-        }
       }
     }
     .tool-nav {

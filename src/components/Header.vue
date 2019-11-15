@@ -11,13 +11,13 @@
         <router-link
           to="/"
         >
-          <span class="mr-2">HOME</span>
+          HOME
         </router-link>
-        <!-- <router-link
+        <router-link
           to="/movies"
         >
-          <span class="mr-2">Movies</span>
-        </router-link> -->
+          Movies
+        </router-link>
       </div>
       <!-- <div class="tool-nav">
         <router-link to="/">Sign in</router-link>
@@ -25,6 +25,20 @@
     </div>
   </header>
 </template>
+
+<script>
+  export default {
+    methods: {
+      // isActive(route) {
+      //   console.log(route)
+      //   if (route === this.$route.path) {
+      //     return true
+      //   }
+      //   return false
+      // }
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   @import "../assets/scss/header.scss";

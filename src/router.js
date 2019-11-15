@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Films from './views/Films.vue'
 import FilmDetails from './views/FilmDetails.vue'
-import Movies from './views/Movies.vue'
 
 Vue.use(Router)
 
@@ -31,7 +31,7 @@ export default new Router({
     {
       path: '/movies',
       name: 'movies',
-      component: Movies
+      component: Films
     }
   ]
 })
