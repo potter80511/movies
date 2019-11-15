@@ -45,13 +45,23 @@
             clickable: true,
           },
         },
+        filmData: {
+          name: "",
+          wallpaper: "",
+          rates: 0,
+          favorite: false,
+          my_rate: 0,
+          imdb_id: "",
+          tw_name: "",
+        }
       }
     },
+    mounted() {
+
+    },
     computed: {
-      moviesData() {
-        return this.$store.getters.filterFavoriteMovies.sort((a,b) => {
-          return b.rates - a.rates;
-        })
+      getMoviesData() {
+        return this.$store.state.movies //獲取電影資料
       },
       seriesData() {
         return this.$store.getters.filterFavoriteSeries.sort((a,b) => {
