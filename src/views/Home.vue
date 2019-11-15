@@ -68,7 +68,9 @@
             v-for="(item, i) in moviesData"
             :key="i">
             <div>
-              <img :src="item.wallpaper">
+              <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
+                <img :src="item.wallpaper">
+              </router-link>
             </div>
             <div class="list_content">
               <div class="rates">

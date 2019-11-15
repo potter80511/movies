@@ -47,13 +47,18 @@ export const rateStar = (rates) => {
 }
 
 export const objToArray = (oriData) => {
-  const dataArray = []
-  const dataKeys = Object.keys(oriData)
+  console.log(oriData, 'ori')
+  if(oriData) {
+    const dataArray = []
+    const dataKeys = Object.keys(oriData)
 
-  dataKeys.forEach((dataKey) => {
-    dataArray.push(oriData[dataKey])
-  })
-  return dataArray;
+    dataKeys.forEach((dataKey) => {
+      dataArray.push(oriData[dataKey])
+    })
+    return dataArray;
+  } else {
+    console.log('no_data')
+  }
 }
 
 export const bannerRWD = (w) => {

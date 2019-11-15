@@ -1,6 +1,6 @@
 <template>
   <div class="film_details">
-    <div class="banner" ref="bannerSlide">
+    <div class="banner" ref="bannerSlide" v-if="bannerData">
       <swiper :options="swiperBanner"
                 v-if="bannerData.length > 0">
         <swiper-slide
@@ -28,7 +28,7 @@
               </div>
               {{filmData.name}}
             </h1>
-            <h2 class="tw_name">
+            <h2 class="tw_name" v-if="filmData.tw_name">
               <b>中文片名：</b>
               <span>{{filmData.tw_name}}</span>
             </h2>
@@ -37,7 +37,7 @@
               <span v-if="filmData.type === 'series'">影集</span>
               <span v-else-if="filmData.type === 'movies'">電影</span>
             </div>
-            <div class="director dimond">
+            <div class="director dimond" v-if="directorData">
               <b>導演：</b>
               <div>
                 <span v-for="(item, i) in directorData"
@@ -45,7 +45,7 @@
                 >{{item}}</span>
               </div>
             </div>
-            <div class="casts dimond">
+            <div class="casts dimond" v-if="castData">
               <b>主演：</b>
               <div>
                 <span v-for="(item, i) in castData"
@@ -63,7 +63,7 @@
               </span>
               <b>{{filmData.rates.toFixed(1)}} 分</b>
             </div>
-            <div class="my_rate">
+            <div class="my_rate" v-if="filmData.my_rate">
               <font-awesome-icon icon="check" />
               <b>我的評分：</b>
               <span v-for="(star, j) in rateTenStar(filmData.my_rate)"
@@ -73,6 +73,10 @@
                 <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
               </span>
               <b>{{filmData.my_rate.toFixed(1)}} 分</b>
+            </div>
+            <div class="favorite" v-if="filmData.favorite">
+              <span v-if="filmData.type === 'movies'">最愛電影</span>
+              <span v-else-if="filmData.type === 'series'">最愛影集</span>
             </div>
           </div>
         </div>

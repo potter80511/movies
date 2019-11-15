@@ -37,6 +37,8 @@ export default new Vuex.Store({
               rates: obj[key].rates,
               favorite: obj[key].favorite,
               my_rate: obj[key].my_rate,
+              imdb_id: obj[key].imdb_id,
+              tw_name: obj[key].tw_name,
             })
           }
           // console.log(movies, 'store')
