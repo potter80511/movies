@@ -23,7 +23,7 @@
           </div>
           <div class="words">
             <h1>
-              <div class="favorite" v-if="filmData.favorite">
+              <div class="favorite_crown" v-if="filmData.favorite">
                 <font-awesome-icon icon="crown" />
               </div>
               {{filmData.name}}
@@ -32,14 +32,26 @@
               <b>中文片名：</b>
               <span>{{filmData.tw_name}}</span>
             </h2>
-            <div class="director dimond">
-              <b>導演：</b>
-              <span>{{filmData.director}}</span>
-            </div>
             <div class="type dimond">
               <b>類型：</b>
               <span v-if="filmData.type === 'series'">影集</span>
               <span v-else-if="filmData.type === 'movies'">電影</span>
+            </div>
+            <div class="director dimond">
+              <b>導演：</b>
+              <div>
+                <span v-for="(item, i) in directorData"
+                      :key="i"
+                >{{item}}</span>
+              </div>
+            </div>
+            <div class="casts dimond">
+              <b>主演：</b>
+              <div>
+                <span v-for="(item, i) in castData"
+                      :key="i"
+                >{{item}}</span>
+              </div>
             </div>
             <div class="rates">
               <b><font-awesome-icon :icon="['fab', 'imdb']" /> 評分：</b>
@@ -67,7 +79,7 @@
         <div class="main_intro">
           <div class="blocks">
             <h3><span class="circle"></span>劇情介紹</h3>
-            <p>{{filmData.summary}}</p>
+            <div v-html="filmData.summary"></div>
           </div>
         </div>
       </div>
@@ -77,6 +89,7 @@
 
 <script>
   import { rateTenStar } from '../helper';
+  import { objToArray } from '../helper';
 
   export default {
     data() {
@@ -95,7 +108,8 @@
           },
         },
         filmData: {
-          director: "",
+          cast: {},
+          directors: {},
           favorite: false,
           imdb_id: "",
           my_rate: 0,
@@ -107,12 +121,14 @@
           type: "",
           wallpaper: ""
         },
-        bannerData: []
+        bannerData: [],
+        directorData: [],
+        castData: []
       }
     },
     computed: {
       getFilmData() {
-        return this.$store.state.currentFilm
+        return this.$store.state.currentFilm //獲取電影資料
       },
     },
     methods: {
@@ -126,15 +142,16 @@
     watch: {
       getFilmData(val) {
         if (val) {
-          const obj = val.page_banners
-          const bannerArr = []
-          const objKeys = Object.keys(obj)
+          //輪播主圖資料
+          this.bannerData = objToArray(val.page_banners)
 
-          objKeys.forEach((objKey) => {
-            bannerArr.push(obj[objKey])
-          })
-          this.bannerData = bannerArr
-          this.filmData = val
+          //導演資料
+          this.directorData = objToArray(val.directors)
+
+          //演員資料
+          this.castData = objToArray(val.cast)
+
+          this.filmData = val //整包電影資料
         }
       }
     }

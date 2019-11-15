@@ -38,7 +38,7 @@
         *{text-shadow: 3px 3px 5px #000;}
         h1 {
           position: relative;
-          .favorite {
+          .favorite_crown {
             display: inline-block;
             svg {
               color: $imdb-yellow;
@@ -57,8 +57,19 @@
         .director, .type, .rates, .my_rate {
           margin-bottom: 10px;
         }
-        .director, .type {
-          b {
+        .casts, .director {
+          display: flex;
+          b{
+            min-width: 48px;
+          }
+        }
+        .director, .casts {
+          span {
+            &:not(:last-child) {
+              &:after {
+                content: "、";
+              }
+            }
           }
         }
         .rates, .my_rate {
@@ -119,6 +130,9 @@
             transform: translate(-45%, -45%);
           }
         }
+      }
+      p {
+        line-height: 2em;
       }
     }
   }

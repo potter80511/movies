@@ -46,6 +46,16 @@ export const rateStar = (rates) => {
   return arr;
 }
 
+export const objToArray = (oriData) => {
+  const dataArray = []
+  const dataKeys = Object.keys(oriData)
+
+  dataKeys.forEach((dataKey) => {
+    dataArray.push(oriData[dataKey])
+  })
+  return dataArray;
+}
+
 export const bannerRWD = (w) => {
   let bannerWidth = w;
   let bannerHeight = 0.5625 * bannerWidth;
