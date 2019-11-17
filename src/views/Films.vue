@@ -21,13 +21,19 @@
     </div>
     <div class="film_list">
       <div class="container">
+        <div class="section-header">
+          <h2 v-if="$route.name === 'movies'">電影列表<span>Movies</span></h2>
+          <h2 v-else-if="$route.name === 'series'">影集列表<span>Series</span></h2>
+        </div>
         <div class="row list_content">
           <div class="item"
             v-for="(item, i) in filmsData"
             :key="i"
             >
             <div class="image">
-              <img :src="item.wallpaper" />
+              <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
+                <img :src="item.wallpaper" />
+              </router-link>
             </div>
             <div class="film_content">
               <h2 class="name">{{item.tw_name}}</h2>

@@ -1,18 +1,6 @@
 @import 'color.scss';
 
 .film_details {
-  .banner {
-    position: relative;
-    .swiper-button {
-      transition: all .3s;
-      opacity: 0;
-    }
-    &:hover {
-      .swiper-button {
-        opacity: 1;
-      }
-    }
-  }
   >.container {
     padding-top: 50px;
     padding-bottom: 50px;

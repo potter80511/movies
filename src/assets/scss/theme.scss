@@ -76,13 +76,36 @@ img {
     }
   }
 }
+.banner {
+  position: relative;
+  margin-bottom: 30px;
+  .swiper-button {
+    transition: all .3s;
+    opacity: 0;
+    svg {
+      display: none;
+    }
+  }
+  &:hover {
+    .swiper-button {
+      opacity: 1;
+    }
+  }
+}
 .section-header {
   margin-bottom: 25px;
   h2 {
-    color: #fff;
+    color: #aaa;
     font-size: 26px;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid $iron-gray;
     padding-bottom: 15px;
+    span {
+      color: $iron-gray;
+      position: relative;
+      top: 15px;
+      left: 5px;
+      font-style: italic;
+    }
   }
 }
 .swiper {
