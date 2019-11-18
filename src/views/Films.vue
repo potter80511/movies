@@ -37,6 +37,7 @@
                 </router-link>
               </div>
               <div class="film_content">
+                <div style="display: none;">{{item.id}}</div>
                 <h2 class="name">{{item.tw_name}}</h2>
                 <div class="rates">
                   <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
@@ -56,10 +57,10 @@
                     </span>
                   </div>
                 </div>
-                <div class="cast">
+                <div class="cast" v-if="objToArray(item.cast)">
                   <b>主演：</b>
                   <div>
-                    <span v-for="(c, i) in objToArray(item.cast)"
+                    <span v-for="(c, i) in objToArray(item.cast).slice(0,3)"
                       :key="i">
                     {{c}}
                     </span>
@@ -128,6 +129,7 @@
         return rateStarWithEmpty(rates)
       },
       objToArray(obj) {
+        // console.log(objToArray(obj),'obj')
         return objToArray(obj)
       },
       // bannerRWD() {
