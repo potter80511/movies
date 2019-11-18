@@ -1,5 +1,5 @@
 <template>
-  <div class="films">
+  <div id="films">
     <div class="banner" ref="bannerSlide">
       <swiper :options="swiperBanner"
                 v-if="bannerData.length > 0">
@@ -26,19 +26,48 @@
           <h2 v-else-if="$route.name === 'series'">影集列表<span>Series</span></h2>
         </div>
         <div class="row list_content">
-          <div class="item"
+          <div class="item col-lg-4 col-6"
             v-for="(item, i) in filmsData"
             :key="i"
             >
-            <div class="image">
-              <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
-                <img :src="item.wallpaper" />
-              </router-link>
-            </div>
-            <div class="film_content">
-              <h2 class="name">{{item.tw_name}}</h2>
-              <div class="rates">
-                <b>{{item.rates}}</b>
+            <div>
+              <div class="image">
+                <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
+                  <img :src="item.wallpaper" />
+                </router-link>
+              </div>
+              <div class="film_content">
+                <h2 class="name">{{item.tw_name}}</h2>
+                <div class="rates">
+                  <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
+                      :key="j">
+                    <font-awesome-icon v-if="star==='star'" icon="star" />
+                    <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                    <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
+                  </span>
+                  <b>{{item.rates.toFixed(1)}}</b>
+                </div>
+                <div class="director">
+                  <b>導演：</b>
+                  <div>
+                    <span v-for="(d, i) in objToArray(item.directors)"
+                      :key="i">
+                    {{d}}
+                    </span>
+                  </div>
+                </div>
+                <div class="cast">
+                  <b>主演：</b>
+                  <div>
+                    <span v-for="(c, i) in objToArray(item.cast)"
+                      :key="i">
+                    {{c}}
+                    </span>
+                  </div>
+                </div>
+                <div class="year">
+                  <b>年份：</b>{{item.year}} 年
+                </div>
               </div>
             </div>
           </div>
@@ -50,6 +79,7 @@
 
 <script>
   import { rateStarWithEmpty } from '../helper';
+  import { objToArray } from '../helper';
 
   export default {
     data () {
@@ -67,7 +97,7 @@
             prevEl: '.banner .swiper-button-prev',
           },
         },
-        // filmsData: []
+        directorData: []
       }
     },
     computed: {
@@ -88,7 +118,6 @@
         if(routeType === 'movies') {
           return this.$store.getters.moviesBanner
         } else if (routeType === 'series') {
-          console.log(this.$store.getters.seriesBanner)
           return this.$store.getters.seriesBanner
         }
         return []
@@ -98,6 +127,9 @@
       rateStarWithEmpty(rates) {
         return rateStarWithEmpty(rates)
       },
+      objToArray(obj) {
+        return objToArray(obj)
+      },
       // bannerRWD() {
       //   const bannerWidth = this.$refs.bannerSlide.clientWidth;
       //   return bannerRWD(bannerWidth);
@@ -105,3 +137,7 @@
     }
   };
 </script>
+
+<style lang="scss">
+  @import "../assets/scss/films.scss";
+</style>

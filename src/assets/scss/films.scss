@@ -1,2 +1,54 @@
 @import 'color.scss';
 
+#films {
+  .list_content {
+    .item {
+      margin-bottom: 20px;
+      >div {
+        display: flex;
+        border: 1px solid #333;
+        padding: 20px;
+        height: 100%;
+        transition: all .3s;
+        &:hover {
+          border-color: #555;
+        }
+      }
+      .image {
+        flex: 0 0 33%;
+      }
+      .film_content {
+        margin-left: 20px;
+        .name {
+          font-size: 18px;
+          padding-bottom: 10px;
+          border-bottom: 1px dashed #555;
+        }
+        .director, .cast, .year {
+          font-size: 13px;
+        }
+        .rates {
+          b {
+            margin-left: 10px;
+          }
+        }
+        .director, .cast {
+          display: flex;
+          b {
+            min-width: 39px;
+          }
+          >div {
+            display: inline-block;
+            span {
+              &:not(:last-child) {
+                &:after {
+                  content: "、";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

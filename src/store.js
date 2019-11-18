@@ -33,6 +33,8 @@ export default new Vuex.Store({
               id: key,
               name: obj[key].name,
               brief: obj[key].brief,
+              cast: obj[key].cast,
+              directors: obj[key].directors,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
               favorite: obj[key].favorite,
@@ -40,6 +42,7 @@ export default new Vuex.Store({
               imdb_id: obj[key].imdb_id,
               tw_name: obj[key].tw_name,
               list_banner: obj[key].list_banner,
+              year: obj[key].year,
             })
           }
           // console.log(movies, 'store')
@@ -57,6 +60,8 @@ export default new Vuex.Store({
               id: key,
               name: obj[key].name,
               brief: obj[key].brief,
+              cast: obj[key].cast,
+              directors: obj[key].directors,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
               favorite: obj[key].favorite,
