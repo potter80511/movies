@@ -75,6 +75,7 @@ export default new Vuex.Store({
               imdb_id: obj[key].imdb_id,
               tw_name: obj[key].tw_name,
               list_banner: obj[key].list_banner,
+              year: obj[key].year,
             })
           }
           // console.log(series, 'store')
