@@ -30,7 +30,7 @@
             v-for="(item, i) in filmsData"
             :key="i"
             >
-            <div>
+            <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
               <div class="image">
                 <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
                   <img :src="item.wallpaper" />
@@ -38,7 +38,7 @@
               </div>
               <div class="film_content">
                 <div style="display: none;">{{item.id}}</div>
-                <h2 class="name">{{item.tw_name}}</h2>
+                <h3 class="name">{{item.tw_name}}</h3>
                 <div class="rates">
                   <b class="title">IMDB：</b>
                   <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
@@ -61,10 +61,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="year">
-                  <b>年份：</b>{{item.year}} 年
-                </div>
-                <div class="director">
+                <div class="director" v-if="item.directors">
                   <b>導演：</b>
                   <div>
                     <span v-for="(d, i) in objToArray(item.directors)"
@@ -83,7 +80,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </router-link>
           </div>
         </div>
       </div>

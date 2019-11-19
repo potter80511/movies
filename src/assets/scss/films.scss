@@ -1,17 +1,28 @@
 @import 'color.scss';
 
 #films {
+  * {transition: all .3s;}
+  div, h3, h4, p, a {
+    color: #9d9d9d;
+  }
   .list_content {
     .item {
       margin-bottom: 20px;
-      >div {
+      >a {
         display: flex;
         border: 1px solid #333;
         padding: 20px;
         height: 100%;
-        transition: all .3s;
         &:hover {
           border-color: #555;
+          box-shadow: 0 0 15px #000;
+          background: #222;
+          transform: scale(1.05);
+          * {text-shadow: 0 0 10px #000;}
+          img {box-shadow: 0 0 10px #000;}
+          div, h3, h4, p, a {
+            color: #fff;
+          }
         }
       }
       .image {
