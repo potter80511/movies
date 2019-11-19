@@ -18,91 +18,29 @@
       </div>
       <div class="swiper-pagination" slot="pagination"></div>
     </div>
-    <div id="series" class="lists series_list">
-      <div class="container">
-        <div class="section-header">
-          <h2>Favorite Series</h2>
-        </div>
-        <swiper 
-          :options="swiperFavoriteSeries"
-          v-if="seriesData.length > 0">
-          <swiper-slide
-            v-for="(item, i) in seriesData"
-            :key="i">
-            <div>
-              <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
-                <img :src="item.wallpaper">
-              </router-link>
-            </div>
-            <div class="list_content">
-              <div class="rates">
-                <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
-                      :key="j">
-                  <font-awesome-icon v-if="star==='star'" icon="star" />
-                  <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
-                  <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
-                </span>
-                <b>{{item.rates.toFixed(1)}}</b>
-              </div>
-              <div class="movie_title">
-                <h2>{{ item.name }}</h2>
-              </div>
-              <div class="discription">
-                <p>{{ item.brief }}</p>
-              </div>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
-      <div class="swiper-button-prev swiper-button" slot="button-prev"></div>
-      <div class="swiper-button-next swiper-button" slot="button-next"></div>
-    </div>
-    <div id="movies" class="lists movie_list">
-      <div class="container">
-        <div class="section-header">
-          <h2>Favorite Movies</h2>
-        </div>
-        <swiper :options="swiperFavoriteMovies"
-                v-if="moviesData.length > 0">
-          <swiper-slide
-            v-for="(item, i) in moviesData"
-            :key="i">
-            <div>
-              <router-link :to="{ name: 'film details', params: {id: item.imdb_id}}">
-                <img :src="item.wallpaper">
-              </router-link>
-            </div>
-            <div class="list_content">
-              <div style="color: #fff;">{{item.id}}</div>
-              <div class="rates">
-                <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
-                      :key="j">
-                  <font-awesome-icon v-if="star==='star'" icon="star" />
-                  <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
-                  <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
-                </span>
-                <b>{{item.rates.toFixed(1)}}</b>
-              </div>
-              <div class="movie_title">
-                <h2>{{ item.name }}</h2>
-              </div>
-              <div class="discription">
-                <p>{{ item.brief }}</p>
-              </div>
-            </div>
-          </swiper-slide>
-        </swiper>
-      </div>
-      <div class="swiper-button-prev swiper-button" slot="button-prev"></div>
-      <div class="swiper-button-next swiper-button" slot="button-next"></div>
-    </div>
+    <IndexList
+      :blockId="'series'"
+      :blockClass="'series_list'"
+      :sectionTitle="'Favorite Series'"
+      :filmsData="seriesData"
+    />
+    <IndexList
+      :blockId="'movies'"
+      :blockClass="'movies_list'"
+      :sectionTitle="'Favorite Movies'"
+      :filmsData="moviesData"
+    />
   </div>
 </template>
 
 <script>
   import { rateStarWithEmpty } from '../helper';
+  import IndexList from '../components/index_lists/IndexList';
 
   export default {
+    components: {
+      IndexList,
+    },
     data () {
       return {
         swiperBanner: {
