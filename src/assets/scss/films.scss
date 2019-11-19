@@ -24,15 +24,17 @@
           padding-bottom: 10px;
           border-bottom: 1px dashed #555;
         }
-        .director, .cast, .year {
+        .director, .cast, .year, .area, .categories {
           font-size: 13px;
+          margin-bottom: 5px;
         }
         .rates {
-          b {
+          margin-bottom: 10px;
+          b:not(.title) {
             margin-left: 10px;
           }
         }
-        .director, .cast {
+        .director, .cast, .categories {
           display: flex;
           b {
             min-width: 39px;

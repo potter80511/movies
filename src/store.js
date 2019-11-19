@@ -31,8 +31,10 @@ export default new Vuex.Store({
           for (let key in obj) {
             movies.push({
               id: key,
+              area: obj[key].area,
               name: obj[key].name,
               brief: obj[key].brief,
+              categories: obj[key].categories,
               cast: obj[key].cast,
               directors: obj[key].directors,
               wallpaper: obj[key].wallpaper,
@@ -59,7 +61,9 @@ export default new Vuex.Store({
             series.push({
               id: key,
               name: obj[key].name,
+              area: obj[key].area,
               brief: obj[key].brief,
+              categories: obj[key].categories,
               cast: obj[key].cast,
               directors: obj[key].directors,
               wallpaper: obj[key].wallpaper,

@@ -40,6 +40,7 @@
                 <div style="display: none;">{{item.id}}</div>
                 <h2 class="name">{{item.tw_name}}</h2>
                 <div class="rates">
+                  <b class="title">IMDB：</b>
                   <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
                       :key="j">
                     <font-awesome-icon v-if="star==='star'" icon="star" />
@@ -47,6 +48,21 @@
                     <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
                   </span>
                   <b>{{item.rates.toFixed(1)}}</b>
+                </div>
+                <div class="area">
+                  <b>地區：</b>{{item.area}}
+                </div>
+                <div class="categories">
+                  <b>種類</b>
+                  <div>
+                    <span v-for="(cate, i) in objToArray(item.categories)"
+                      :key="i">
+                    {{cate}}
+                    </span>
+                  </div>
+                </div>
+                <div class="year">
+                  <b>年份：</b>{{item.year}} 年
                 </div>
                 <div class="director">
                   <b>導演：</b>
@@ -65,9 +81,6 @@
                     {{c}}
                     </span>
                   </div>
-                </div>
-                <div class="year">
-                  <b>年份：</b>{{item.year}} 年
                 </div>
               </div>
             </div>
