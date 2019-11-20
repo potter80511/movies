@@ -32,7 +32,7 @@
   export default {
     props: {
       id: {
-        type: Number,
+        type: String,
         default: 0
       },
       imdbId: {

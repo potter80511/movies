@@ -2,6 +2,7 @@
 @import 'mixin.scss';
 
 .home {
+  
   .banner {
     position: relative;
     .swiper-pagination {
@@ -58,9 +59,23 @@
       }
     }
   }
+  .more {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: $confort-blue;
+    transition: all .3s;
+    &:hover {
+      color: $confort-blue-hover;
+    }
+  }
   .lists {
     overflow: hidden;
     position: relative;
+    margin-bottom: 30px;
+    >.container {
+      position: relative;
+    }
     .swiper-container {
       overflow: visible;
     }

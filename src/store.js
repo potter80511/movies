@@ -43,6 +43,7 @@ export default new Vuex.Store({
               my_rate: obj[key].my_rate,
               imdb_id: obj[key].imdb_id,
               tw_name: obj[key].tw_name,
+              type: obj[key].type,
               list_banner: obj[key].list_banner,
               year: obj[key].year,
             })
@@ -74,11 +75,12 @@ export default new Vuex.Store({
               banner: obj[key].banner,
               imdb_id: obj[key].imdb_id,
               tw_name: obj[key].tw_name,
+              type: obj[key].type,
               list_banner: obj[key].list_banner,
               year: obj[key].year,
             })
           }
-          // console.log(series, 'store')
+          console.log(series, 'store')
           commit('setLoadedSeries', series)
         })
     },

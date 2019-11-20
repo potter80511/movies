@@ -20,14 +20,18 @@
     </div>
     <IndexList
       :blockId="'series'"
+      :type="'series'"
       :blockClass="'series_list'"
-      :sectionTitle="'Favorite Series'"
+      :sectionTitle="'最愛影集'"
+      :subTitle="'Favorite Series'"
       :filmsData="seriesData"
     />
     <IndexList
       :blockId="'movies'"
+      :type="'movies'"
       :blockClass="'movies_list'"
-      :sectionTitle="'Favorite Movies'"
+      :sectionTitle="'最愛電影'"
+      :subTitle="'Favorite Movies'"
       :filmsData="moviesData"
     />
   </div>
@@ -60,50 +64,6 @@
             clickable: true,
           },
         },
-        swiperFavoriteSeries: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-          speed: 800,
-          loop: true,
-          // autoplay: {
-          //   delay: 4000,
-          //   disableOnInteraction: false,
-          // },
-          breakpoints: {
-            1199: {
-              slidesPerView: 4,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-          },
-          navigation: {
-            nextEl: '.series_list .swiper-button-next',
-            prevEl: '.series_list .swiper-button-prev',
-          }
-        },
-        swiperFavoriteMovies: {
-          slidesPerView: 5,
-          spaceBetween: 30,
-          speed: 800,
-          loop: true,
-          // autoplay: {
-          //   delay: 4000,
-          //   disableOnInteraction: false,
-          // },
-          breakpoints: {
-            1199: {
-              slidesPerView: 4,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-          },
-          navigation: {
-            nextEl: '.movie_list .swiper-button-next',
-            prevEl: '.movie_list .swiper-button-prev',
-          }
-        },
       }
     },
     computed: {
@@ -122,9 +82,6 @@
       },
     },
     methods: {
-      rateStarWithEmpty(rates) {
-        return rateStarWithEmpty(rates)
-      },
       // bannerRWD() {
       //   const bannerWidth = this.$refs.bannerSlide.clientWidth;
       //   return bannerRWD(bannerWidth);

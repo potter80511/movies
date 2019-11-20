@@ -19,6 +19,7 @@ import {
   faHeart,
   faCrown,
   faCheck,
+  faAngleDoubleRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -35,6 +36,7 @@ library.add(
   faHeart,
   faCrown,
   faCheck,
+  faAngleDoubleRight
 )
 
 Vue.use(vueSwiper);

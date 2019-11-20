@@ -1,8 +1,16 @@
 <template>
   <div :id="blockId" :class="'lists ' + blockClass">
     <div class="container">
+      <router-link :to="'/' + type" v-if="type === 'series'" class="more">
+        更多影集
+        <font-awesome-icon icon="angle-double-right" />
+      </router-link>
+      <router-link :to="'/' + type" v-else-if="type === 'movies'" class="more">
+        更多電影
+        <font-awesome-icon icon="angle-double-right" />
+      </router-link>
       <div class="section-header">
-        <h2>{{sectionTitle}}</h2>
+        <h2>{{sectionTitle}}<span>{{subTitle}}</span></h2>
       </div>
       <swiper 
         :options="swiperOpitons"
@@ -44,6 +52,14 @@
         type: String,
         default: '',
         required: true
+      },
+      subTitle: {
+        type: String,
+        default: '',
+      },
+      type: {
+        type: String,
+        default: '/',
       },
       filmsData: {
         type: Array,
