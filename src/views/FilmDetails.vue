@@ -1,20 +1,8 @@
 <template>
   <div class="film_details">
-    <div class="banner" ref="bannerSlide" v-if="bannerData">
-      <swiper :options="swiperBanner"
-                v-if="bannerData.length > 0">
-        <swiper-slide
-          v-for="(item, i) in bannerData"
-          :key="i"
-          >
-          <img :src="item" />
-        </swiper-slide>
-      </swiper>
-      <div class="swiper-button-prev swiper-button" slot="button-prev">
-      </div>
-      <div class="swiper-button-next swiper-button" slot="button-next">
-      </div>
-    </div>
+    <BannerSlide
+      :bannerData="bannerData"
+    />
     <div class="container">
       <div class="main">
         <div class="row main_info">
@@ -54,7 +42,7 @@
               </div>
             </div>
             <div class="rates">
-              <b><font-awesome-icon :icon="['fab', 'imdb']" /> 評分：</b>
+              <b>IMDB 評分：</b>
               <span v-for="(star, j) in rateTenStar(filmData.rates)"
                       :key="j">
                 <font-awesome-icon v-if="star==='star'" icon="star" />
@@ -94,23 +82,14 @@
 <script>
   import { rateTenStar } from '../helper';
   import { objToArray } from '../helper';
+  import BannerSlide from '../components/BannerSlide';
 
   export default {
+    components: {
+      BannerSlide,
+    },
     data() {
       return {
-        swiperBanner: {
-          speed: 800,
-          loop: true,
-          effect: 'fade',
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: '.banner .swiper-button-next',
-            prevEl: '.banner .swiper-button-prev',
-          },
-        },
         filmData: {
           cast: {},
           directors: {},
@@ -147,8 +126,10 @@
       getFilmData(val) {
         if (val) {
           //輪播主圖資料
-          console.log(val)
-          this.bannerData = objToArray(val.page_banners)
+          // console.log(val)
+          if(val.page_banners) {
+            this.bannerData = objToArray(val.page_banners)
+          }
 
           //導演資料
           this.directorData = objToArray(val.directors)

@@ -80,7 +80,7 @@ export default new Vuex.Store({
               year: obj[key].year,
             })
           }
-          console.log(series, 'store')
+          // console.log(series, 'store')
           commit('setLoadedSeries', series)
         })
     },
@@ -112,7 +112,10 @@ export default new Vuex.Store({
         // console.log(o.index_banner)
         return o.index_banner === true
       });
-      return filterData;
+      const bannerArray = filterData.map((obj)=> {
+        return obj.banner
+      })
+      return bannerArray;
     },
     moviesBanner(state) {
       const filterData = state.movies.filter((o) => {

@@ -1,23 +1,9 @@
 <template>
   <div class="home">
-    <div class="banner" ref="bannerSlide">
-      <swiper :options="swiperBanner"
-                v-if="indexBannerData.length > 0">
-        <swiper-slide
-          v-for="(item, i) in indexBannerData"
-          :key="i"
-          >
-          <img :src="item.banner" />
-        </swiper-slide>
-      </swiper>
-      <div class="swiper-button-prev swiper-button" slot="button-prev">
-        <font-awesome-icon icon="chevron-left" />
-      </div>
-      <div class="swiper-button-next swiper-button" slot="button-next">
-        <font-awesome-icon icon="chevron-right" />
-      </div>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </div>
+    <BannerSlide
+      :bannerData="indexBannerData"
+      :paginationOn="true"
+    />
     <IndexList
       :blockId="'series'"
       :type="'series'"
@@ -40,31 +26,12 @@
 <script>
   import { rateStarWithEmpty } from '../helper';
   import IndexList from '../components/index_lists/IndexList';
+  import BannerSlide from '../components/BannerSlide';
 
   export default {
     components: {
       IndexList,
-    },
-    data () {
-      return {
-        swiperBanner: {
-          speed: 800,
-          loop: true,
-          effect: 'fade',
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: '.banner .swiper-button-next',
-            prevEl: '.banner .swiper-button-prev',
-          },
-          pagination: {
-            el: '.banner .swiper-pagination',
-            clickable: true,
-          },
-        },
-      }
+      BannerSlide,
     },
     computed: {
       moviesData() {

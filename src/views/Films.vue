@@ -1,24 +1,9 @@
 <template>
   <div id="films">
-    <div class="banner" ref="bannerSlide">
-      <swiper :options="swiperBanner"
-                v-if="bannerData.length > 0">
-        <swiper-slide
-          v-for="(item, i) in bannerData"
-          :key="i"
-          :style="{backgroundImage: 'url(' + item + ')', height: 500 + 'px'}"
-          >
-          <!-- <img :src="item" /> -->
-        </swiper-slide>
-      </swiper>
-      <div class="swiper-button-prev swiper-button" slot="button-prev">
-        <font-awesome-icon icon="chevron-left" />
-      </div>
-      <div class="swiper-button-next swiper-button" slot="button-next">
-        <font-awesome-icon icon="chevron-right" />
-      </div>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </div>
+    <BannerSlide
+      :bannerData="bannerData"
+      :background="true"
+    />
     <div class="film_list">
       <div class="container">
         <div class="section-header">
@@ -91,6 +76,7 @@
 <script>
   import { rateStarWithEmpty } from '../helper';
   import { objToArray } from '../helper';
+  import BannerSlide from '../components/BannerSlide';
 
   export default {
     data () {
@@ -110,6 +96,9 @@
         },
         directorData: []
       }
+    },
+    components: {
+      BannerSlide,
     },
     computed: {
       filmsData() {
