@@ -55,6 +55,16 @@
                     </span>
                   </div>
                 </div>
+                <div class="writers" v-else-if="item.writers">
+                  <b>編劇：</b>
+                  <div>
+                    <span v-for="(w, i) in objToArray(item.writers).slice(0, 3)"
+                      :key="i">
+                    {{w}}
+                    </span>
+                    <span v-if="objToArray(item.writers).length > 3">...</span>
+                  </div>
+                </div>
                 <div class="cast" v-if="objToArray(item.cast)">
                   <b>主演：</b>
                   <div>

@@ -66,7 +66,6 @@ export default new Vuex.Store({
               brief: obj[key].brief,
               categories: obj[key].categories,
               cast: obj[key].cast,
-              directors: obj[key].directors,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
               favorite: obj[key].favorite,
@@ -77,6 +76,7 @@ export default new Vuex.Store({
               tw_name: obj[key].tw_name,
               type: obj[key].type,
               list_banner: obj[key].list_banner,
+              writers: obj[key].writers,
               year: obj[key].year,
             })
           }

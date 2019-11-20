@@ -26,6 +26,26 @@ img {
     color: $rate-star!important;
   }
 }
+.circle, .circle::before {
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+.circle {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  margin-right: 10px;
+  &::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-45%, -45%);
+  }
+}
 .dimond {
   &:before {
     content: "";

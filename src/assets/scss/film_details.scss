@@ -42,16 +42,16 @@
           padding-bottom: 20px;
           border-bottom: 1px dashed #818181;
         }
-        .director, .type, .rates, .my_rate {
+        .director, .type, .rates, .my_rate, .casts, .writers, .year, .categories, .end {
           margin-bottom: 10px;
         }
-        .casts, .director {
+        .casts, .director, .writers, .categories {
           display: flex;
           b{
             min-width: 48px;
           }
         }
-        .director, .casts {
+        .director, .writers, .casts, .categories {
           span {
             &:not(:last-child) {
               &:after {
@@ -68,7 +68,7 @@
               margin-right: 10px;
             }
             svg {
-              font-size: 18px;
+              font-size: 14px;
             }
           }
         }
@@ -101,32 +101,23 @@
             border: 1px solid #555;
           }
         }
+        .end {
+          span {
+            color: $confort-blue-hover;
+            &.still {
+              color: $red-hover;
+            }
+          }
+          .total {
+            color: #fff;
+          }
+        }
       }
     }
     .main_intro {
       h3 {
         font-size: 24px;
         margin-bottom: 20px;
-        .circle, .circle::before {
-          display: inline-block;
-          border-radius: 50%;
-          border: 1px solid #fff;
-        }
-        .circle {
-          width: 15px;
-          height: 15px;
-          position: relative;
-          margin-right: 10px;
-          &::before {
-            content: "";
-            width: 9px;
-            height: 9px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-45%, -45%);
-          }
-        }
       }
       p {
         line-height: 2em;

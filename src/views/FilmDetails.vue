@@ -20,27 +20,6 @@
               <b>中文片名：</b>
               <span>{{filmData.tw_name}}</span>
             </h2>
-            <div class="type dimond">
-              <b>類型：</b>
-              <span v-if="filmData.type === 'series'">影集</span>
-              <span v-else-if="filmData.type === 'movies'">電影</span>
-            </div>
-            <div class="director dimond" v-if="directorData">
-              <b>導演：</b>
-              <div>
-                <span v-for="(item, i) in directorData"
-                      :key="i"
-                >{{item}}</span>
-              </div>
-            </div>
-            <div class="casts dimond" v-if="castData">
-              <b>主演：</b>
-              <div>
-                <span v-for="(item, i) in castData"
-                      :key="i"
-                >{{item}}</span>
-              </div>
-            </div>
             <div class="rates">
               <b>IMDB 評分：</b>
               <span v-for="(star, j) in rateTenStar(filmData.rates)"
@@ -61,6 +40,57 @@
                 <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
               </span>
               <b>{{filmData.my_rate.toFixed(1)}} 分</b>
+            </div>
+            <div class="type">
+              <b>類型：</b>
+              <span v-if="filmData.type === 'series'">影集</span>
+              <span v-else-if="filmData.type === 'movies'">電影</span>
+            </div>
+            <div class="director" v-if="directorData.length > 0">
+              <b>導演：</b>
+              <div>
+                <span v-for="(item, i) in directorData"
+                      :key="i"
+                >{{item}}</span>
+              </div>
+            </div>
+            <div class="writers" v-else-if="writersData.length > 0">
+              <b>編劇：</b>
+              <div>
+                <span v-for="(item, i) in writersData"
+                      :key="i"
+                >{{item}}</span>
+              </div>
+            </div>
+            <div class="categories" v-if="cateData.length > 0">
+              <b>種類：</b>
+              <div>
+                <span v-for="(item, i) in cateData"
+                      :key="i"
+                >{{item}}</span>
+              </div>
+            </div>
+            <div class="casts" v-if="castData">
+              <b>主演：</b>
+              <div>
+                <span v-for="(item, i) in castData"
+                      :key="i"
+                >{{item}}</span>
+              </div>
+            </div>
+            <div class="year" v-if="filmData.year">
+              <b>年份：</b>
+              <span>{{filmData.year}} 年</span>
+            </div>
+            <div class="end" v-if="filmData.type === 'series'">
+              <span class="still" v-if="filmData.still">
+                未完結
+                <span class="total" v-if="seasonsData.length > 0">，目前季數 <b>{{seasonsData.length}}</b> 季</span>
+              </span>
+              <span v-else>
+                已完結
+                <span class="total" v-if="seasonsData.length > 0">，共 <b>{{seasonsData.length}}</b> 季</span>
+              </span>
             </div>
             <div class="favorite" v-if="filmData.favorite">
               <span v-if="filmData.type === 'movies'">最愛電影</span>
@@ -99,14 +129,19 @@
           name: "",
           page_banners: {},
           rates: 0,
+          still: false,
           summary: "",
           tw_name: "",
           type: "",
-          wallpaper: ""
+          wallpaper: "",
+          year: 0
         },
         bannerData: [],
         directorData: [],
-        castData: []
+        writersData: [],
+        castData: [],
+        cateData: [],
+        seasonsData: []
       }
     },
     computed: {
@@ -132,10 +167,22 @@
           }
 
           //導演資料
-          this.directorData = objToArray(val.directors)
+          if(val.directors) {
+            this.directorData = objToArray(val.directors)
+          } else if (val.writers){
+            this.writersData = objToArray(val.writers)
+          }
+
+          //種類資料
+          this.cateData = objToArray(val.categories)
 
           //演員資料
           this.castData = objToArray(val.cast)
+
+          //季數
+          if(val.seasons) {
+            this.seasonsData = objToArray(val.seasons)
+          }
 
           this.filmData = val //整包電影資料
         }
