@@ -18,7 +18,11 @@
       border-bottom: 1px solid #818181;
       .wallpaper {
         width: 27%;
-        box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+        img {
+          box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
       }
       .words {
         width: 70%;
