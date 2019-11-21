@@ -43,8 +43,8 @@
             </div>
             <div class="type">
               <b>類型：</b>
-              <span v-if="filmData.type === 'series'">影集</span>
-              <span v-else-if="filmData.type === 'movies'">電影</span>
+              <router-link :to="'/series'" v-if="filmData.type === 'series'">影集</router-link>
+              <router-link :to="'/movies'" v-else-if="filmData.type === 'movies'">電影</router-link>
             </div>
             <div class="director" v-if="directorData.length > 0">
               <b>導演：</b>

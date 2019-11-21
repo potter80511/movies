@@ -24,6 +24,11 @@ import {
 
 import { 
   faImdb,
+  faFacebookSquare,
+  faLine,
+  faYoutube,
+  faGithub,
+  faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 
 library.add(
@@ -36,7 +41,12 @@ library.add(
   faHeart,
   faCrown,
   faCheck,
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faFacebookSquare,
+  faLine,
+  faYoutube,
+  faGithub,
+  faInstagram,
 )
 
 Vue.use(vueSwiper);

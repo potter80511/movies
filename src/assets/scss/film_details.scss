@@ -96,6 +96,14 @@
             }
           }
         }
+        .type {
+          a {
+            color: $confort-blue-hover;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
         .favorite {
           span {
             display: inline-block;
