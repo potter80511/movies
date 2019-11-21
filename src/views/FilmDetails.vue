@@ -46,15 +46,13 @@
               <router-link :to="'/series'" v-if="filmData.type === 'series'">影集</router-link>
               <router-link :to="'/movies'" v-else-if="filmData.type === 'movies'">電影</router-link>
             </div>
-            <div class="director" v-if="directorData.length > 0">
+            <div class="director" v-if="filmData.type === 'movies' && filmData.director">
               <b>導演：</b>
               <div>
-                <span v-for="(item, i) in directorData"
-                      :key="i"
-                >{{item}}</span>
+                <span>{{filmData.director}}</span>
               </div>
             </div>
-            <div class="writers" v-else-if="writersData.length > 0">
+            <div class="writers" v-else-if="filmData.type === 'series' && writersData.length > 0">
               <b>編劇：</b>
               <div>
                 <span v-for="(item, i) in writersData"
@@ -121,8 +119,9 @@
     data() {
       return {
         filmData: {
+          categories: {},
           cast: {},
-          directors: {},
+          director: "",
           favorite: false,
           imdb_id: "",
           my_rate: 0,
@@ -137,7 +136,6 @@
           year: 0
         },
         bannerData: [],
-        directorData: [],
         writersData: [],
         castData: [],
         cateData: [],
@@ -167,14 +165,14 @@
           }
 
           //導演資料
-          if(val.directors) {
-            this.directorData = objToArray(val.directors)
-          } else if (val.writers){
+          if (val.writers){
             this.writersData = objToArray(val.writers)
           }
 
           //種類資料
-          this.cateData = objToArray(val.categories)
+          if(val.categories) {
+            this.cateData = objToArray(val.categories)
+          }
 
           //演員資料
           this.castData = objToArray(val.cast)

@@ -36,7 +36,7 @@ export default new Vuex.Store({
               brief: obj[key].brief,
               categories: obj[key].categories,
               cast: obj[key].cast,
-              directors: obj[key].directors,
+              director: obj[key].director,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
               favorite: obj[key].favorite,

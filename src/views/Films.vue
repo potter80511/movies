@@ -46,16 +46,13 @@
                     </span>
                   </div>
                 </div>
-                <div class="director" v-if="item.directors">
+                <div class="director" v-if="item.type === 'movies' && item.director">
                   <b>導演：</b>
                   <div>
-                    <span v-for="(d, i) in objToArray(item.directors)"
-                      :key="i">
-                    {{d}}
-                    </span>
+                    <span>{{item.director}}</span>
                   </div>
                 </div>
-                <div class="writers" v-else-if="item.writers">
+                <div class="writers" v-else-if="item.type === 'series' && item.writers">
                   <b>編劇：</b>
                   <div>
                     <span v-for="(w, i) in objToArray(item.writers).slice(0, 3)"
