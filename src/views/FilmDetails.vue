@@ -139,7 +139,7 @@
         writersData: [],
         castData: [],
         cateData: [],
-        seasonsData: []
+        seasonsData: [],
       }
     },
     computed: {

@@ -6,6 +6,18 @@
     />
     <div class="film_list">
       <div class="container">
+        <div class="filter">
+          <div class="conditions">
+            <div class="label">
+              <b>地區</b>
+            </div>
+            <div class="contents">
+              <span v-for="filterArea in filterAreas" :key="filterArea.id">
+                {{ filterArea.keyName }}
+              </span>
+            </div>
+          </div>
+        </div>
         <div class="section-header">
           <h2 v-if="$route.name === 'movies'">電影列表<span>Movies</span></h2>
           <h2 v-else-if="$route.name === 'series'">影集列表<span>Series</span></h2>
@@ -101,7 +113,17 @@
             prevEl: '.banner .swiper-button-prev',
           },
         },
-        directorData: []
+        directorData: [],
+        filterAreas: [
+          {
+            keyName: '全部',
+            key: 0
+          },
+          {
+            keyName: '動作',
+            key: 1
+          }
+        ]
       }
     },
     components: {
