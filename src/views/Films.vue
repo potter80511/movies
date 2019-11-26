@@ -6,16 +6,36 @@
     />
     <div class="film_list">
       <div class="container">
-        <div class="filter">
-          <div class="conditions">
-            <div class="label">
-              <b>地區</b>
+        <div class="tools">
+          <div class="filter">
+            <div class="conditions">
+              <div class="label">
+                <span>地區</span>
+                <font-awesome-icon icon="angle-double-right" />
+              </div>
+              <div class="contents">
+                <span v-for="filterArea in filterAreas" :key="filterArea.id">
+                  <span :class="{'active': currentSelectedArea === filterArea.keyName}" @click="filterAreaMethod(filterArea.keyName)">{{ filterArea.keyName }}</span>
+                </span>
+              </div>
             </div>
-            <div class="contents">
-              <span v-for="filterArea in filterAreas" :key="filterArea.id">
-                {{ filterArea.keyName }}
-              </span>
+            <div class="conditions">
+              <div class="label">
+                <span>種類</span>
+                <font-awesome-icon icon="angle-double-right" />
+              </div>
+              <div class="contents">
+                <span v-for="filterCate in filterCates" :key="filterCate.id">
+                  <span :class="{'active': currentSelectedCategory === filterCate.key}" @click="filterCategory(filterCate.key)">{{ filterCate.keyName }}</span>
+                </span>
+              </div>
             </div>
+          </div>
+          <div class="sort">
+            <select v-model="sortBy">
+              <option value="imdbRates">以IMDB評分排序</option>
+              <option value="myRates">以我的評分排序</option>
+            </select>
           </div>
         </div>
         <div class="section-header">
@@ -117,30 +137,116 @@
         filterAreas: [
           {
             keyName: '全部',
-            key: 0
+            key: '00'
+          },
+          {
+            keyName: '美國',
+            key: '01'
+          },
+          {
+            keyName: '韓國',
+            key: '02'
+          },
+          {
+            keyName: '英國',
+            key: '03'
+          },
+        ],
+        filterCates: [
+          {
+            keyName: '全部',
+            key: '00'
           },
           {
             keyName: '動作',
-            key: 1
-          }
-        ]
+            key: '01'
+          },
+          {
+            keyName: '犯罪',
+            key: '02'
+          },
+          {
+            keyName: '劇情',
+            key: '07'
+          },
+          {
+            keyName: '動畫',
+            key: '12'
+          },
+        ],
+        currentSelectedArea: '全部',
+        currentSelectedCategory: '00',
+        sortBy: 'imdbRates'
+        // filmsData: []
       }
     },
     components: {
       BannerSlide,
     },
+    watch: {
+      // mountedData(val) {
+      //   if(val) {
+      //     this.filmsData = val
+      //   }
+      // }
+    },
+    created() {
+      // console.log(this.$store.state.movies)
+      // const routeType = this.$route.name
+      // if(routeType === 'movies') {
+      //   this.filmsData = this.$store.state.movies.sort((a,b) => {
+      //     return b.rates - a.rates;
+      //   })
+      //   console.log(this.$store.state, 'dddd')
+      // } else if (routeType === 'series') {
+      //   this.filmsData = this.$store.state.series.sort((a,b) => {
+      //     return b.rates - a.rates;
+      //   })
+      //   console.log(this.$store.state, 'series')
+
+      // }
+    },
     computed: {
       filmsData() {
         const routeType = this.$route.name
+        let data = []
+        const sortBy = this.sortBy
         if(routeType === 'movies') {
-          return this.$store.state.movies.sort((a,b) => {
-            return b.rates - a.rates;
+          data = this.$store.state.movies.sort((a,b) => {
+            return sortBy === 'imdbRates' ? b.rates - a.rates : b.my_rate - a.my_rate;
           })
         } else if (routeType === 'series') {
-          return this.$store.state.series.sort((a,b) => {
-            return b.rates - a.rates;
+          data = this.$store.state.series.sort((a,b) => {
+            return sortBy === 'imdbRates' ? b.rates - a.rates : b.my_rate - a.my_rate;
           })
         }
+
+        const currentSelectedArea = this.currentSelectedArea;
+        const currentSelectedCategory = this.currentSelectedCategory;
+        console.log(data)
+        if(currentSelectedArea !== '全部' && currentSelectedCategory !== '00' ) {
+          const filteredData = data.filter(f => {
+            return f.area === currentSelectedArea
+          }).filter(c => {
+            const categoriesKey = Object.keys(c.categories || {})
+            return categoriesKey.includes(currentSelectedCategory)
+          })
+          return filteredData
+        } else if(currentSelectedArea === '全部' && currentSelectedCategory !== '00') {
+          const filteredData = data.filter(c => {
+            const categoriesKey = Object.keys(c.categories || {})
+            return categoriesKey.includes(currentSelectedCategory)
+          })
+          return filteredData
+        } else if (currentSelectedArea !== '全部' && currentSelectedCategory === '00' ) {
+          const filteredData = data.filter(f => {
+            return f.area === currentSelectedArea
+          })
+          return filteredData
+        } else {
+          return data
+        }
+        
       },
       bannerData() {
         const routeType = this.$route.name
@@ -160,6 +266,13 @@
         // console.log(objToArray(obj),'obj')
         return objToArray(obj)
       },
+      filterAreaMethod(name) {
+        this.currentSelectedArea = name
+        // console.log(data)
+      },
+      filterCategory(key) {
+        this.currentSelectedCategory = key
+      }
       // bannerRWD() {
       //   const bannerWidth = this.$refs.bannerSlide.clientWidth;
       //   return bannerRWD(bannerWidth);
@@ -170,4 +283,5 @@
 
 <style lang="scss">
   @import "../assets/scss/films.scss";
+  @import "../assets/scss/filter.scss";
 </style>
