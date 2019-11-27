@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header id="header">
     <div class="logo">
       <router-link to="/">
         <span>My</span>
@@ -33,14 +33,16 @@
 
 <script>
   export default {
-    methods: {
-      // isActive(route) {
-      //   console.log(route)
-      //   if (route === this.$route.path) {
-      //     return true
-      //   }
-      //   return false
-      // }
+    mounted() {
+      if(document.body.clientWidth > 991) {
+        document.addEventListener('scroll', () => {
+          if(window.pageYOffset > 0) {
+            document.getElementById('header').classList.add("onScrolled");
+          } else {
+            document.getElementById('header').classList.remove("onScrolled");
+          }
+        })
+      }
     }
   }
 </script>
