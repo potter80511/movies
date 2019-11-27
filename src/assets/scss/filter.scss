@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     line-height: 1;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     .label {
       border-left: 3px solid $imdb-yellow;
       padding-left: 10px;
@@ -23,7 +23,7 @@
     .contents {
       span span {
         font-size: 13px;
-        padding: 3px 10px 0;
+        padding: 3px 6px 0;
         margin-right: 5px;
         cursor: pointer;
         &:hover, &.active {

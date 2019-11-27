@@ -14,7 +14,7 @@
                 <font-awesome-icon icon="angle-double-right" />
               </div>
               <div class="contents">
-                <span v-for="filterArea in filterAreas" :key="filterArea.id">
+                <span v-for="filterArea in filterAreas" :key="filterArea.index">
                   <span :class="{'active': currentSelectedArea === filterArea.keyName}" @click="filterAreaMethod(filterArea.keyName)">{{ filterArea.keyName }}</span>
                 </span>
               </div>
@@ -30,6 +30,17 @@
                 </span>
               </div>
             </div>
+            <div class="conditions">
+              <div class="label">
+                <span>年份</span>
+                <font-awesome-icon icon="angle-double-right" />
+              </div>
+              <div class="contents">
+                <span v-for="filterYear in filterYears" :key="filterYear.index">
+                  <span :class="{'active': currentSelectedYear === filterYear}" @click="filterYearMethod(filterYear)">{{ filterYear }}</span>
+                </span>
+              </div>
+            </div>
           </div>
           <div class="sort">
             <select v-model="sortBy">
@@ -42,7 +53,7 @@
           <h2 v-if="$route.name === 'movies'">電影列表<span>Movies</span></h2>
           <h2 v-else-if="$route.name === 'series'">影集列表<span>Series</span></h2>
         </div>
-        <div class="row list_content">
+        <div class="row list_content" v-if="filmsData.length > 0">
           <div class="item col-lg-4 col-6"
             v-for="(item, i) in filmsData"
             :key="i"
@@ -107,6 +118,9 @@
             </router-link>
           </div>
         </div>
+        <div class="row list_content" v-else>
+          <p>沒有篩選結果</p>
+        </div>
       </div>
     </div>
   </div>
@@ -144,12 +158,19 @@
             key: '01'
           },
           {
-            keyName: '韓國',
-            key: '02'
+            keyName: '英國',
           },
           {
-            keyName: '英國',
-            key: '03'
+            keyName: '韓國',
+          },
+          {
+            keyName: '泰國',
+          },
+          {
+            keyName: '日本',
+          },
+          {
+            keyName: '印度',
           },
         ],
         filterCates: [
@@ -166,45 +187,74 @@
             key: '02'
           },
           {
+            keyName: '愛情',
+            key: '03'
+          },
+          {
+            keyName: '科幻',
+            key: '04'
+          },
+          {
+            keyName: '驚悚',
+            key: '05'
+          },
+          {
+            keyName: '恐怖',
+            key: '06'
+          },
+          {
             keyName: '劇情',
             key: '07'
+          },
+          {
+            keyName: '喜劇',
+            key: '08'
+          },
+          {
+            keyName: '家庭',
+            key: '09'
+          },
+          {
+            keyName: '戰爭',
+            key: '10'
+          },
+          {
+            keyName: '傳記',
+            key: '11'
           },
           {
             keyName: '動畫',
             key: '12'
           },
+          {
+            keyName: '音樂',
+            key: '13'
+          },
+          {
+            keyName: '奇幻',
+            key: '14'
+          },
+        ],
+        filterYears: [
+          '全部',
+          2019,
+          2018,
+          2017,
+          2016,
+          2015,
+          2014,
+          2013,
+          1994,
         ],
         currentSelectedArea: '全部',
         currentSelectedCategory: '00',
+        currentSelectedYear: '全部',
         sortBy: 'imdbRates'
         // filmsData: []
       }
     },
     components: {
       BannerSlide,
-    },
-    watch: {
-      // mountedData(val) {
-      //   if(val) {
-      //     this.filmsData = val
-      //   }
-      // }
-    },
-    created() {
-      // console.log(this.$store.state.movies)
-      // const routeType = this.$route.name
-      // if(routeType === 'movies') {
-      //   this.filmsData = this.$store.state.movies.sort((a,b) => {
-      //     return b.rates - a.rates;
-      //   })
-      //   console.log(this.$store.state, 'dddd')
-      // } else if (routeType === 'series') {
-      //   this.filmsData = this.$store.state.series.sort((a,b) => {
-      //     return b.rates - a.rates;
-      //   })
-      //   console.log(this.$store.state, 'series')
-
-      // }
     },
     computed: {
       filmsData() {
@@ -223,8 +273,34 @@
 
         const currentSelectedArea = this.currentSelectedArea;
         const currentSelectedCategory = this.currentSelectedCategory;
-        console.log(data)
-        if(currentSelectedArea !== '全部' && currentSelectedCategory !== '00' ) {
+        const currentSelectedYear = this.currentSelectedYear;
+    
+        if(currentSelectedArea !== '全部' && currentSelectedCategory !== '00' && currentSelectedYear !== '全部' ) {
+          const filteredData = data.filter(f => {
+            return f.area === currentSelectedArea
+          }).filter(c => {
+            const categoriesKey = Object.keys(c.categories || {})
+            return categoriesKey.includes(currentSelectedCategory)
+          }).filter(y => {
+            return y.year === currentSelectedYear
+          })
+          return filteredData
+        } else if(currentSelectedArea === '全部' && currentSelectedCategory !== '00' && currentSelectedYear !== '全部') {
+          const filteredData = data.filter(c => {
+            const categoriesKey = Object.keys(c.categories || {})
+            return categoriesKey.includes(currentSelectedCategory)
+          }).filter(y => {
+            return y.year === currentSelectedYear
+          })
+          return filteredData
+        } else if (currentSelectedArea !== '全部' && currentSelectedCategory === '00' && currentSelectedYear !== '全部') {
+          const filteredData = data.filter(f => {
+            return f.area === currentSelectedArea
+          }).filter(y => {
+            return y.year === currentSelectedYear
+          })
+          return filteredData
+        } else if (currentSelectedArea !== '全部' && currentSelectedCategory !== '00' && currentSelectedYear === '全部') {
           const filteredData = data.filter(f => {
             return f.area === currentSelectedArea
           }).filter(c => {
@@ -232,15 +308,20 @@
             return categoriesKey.includes(currentSelectedCategory)
           })
           return filteredData
-        } else if(currentSelectedArea === '全部' && currentSelectedCategory !== '00') {
+        } else if (currentSelectedArea !== '全部' && currentSelectedCategory === '00' && currentSelectedYear === '全部' ) {
+          const filteredData = data.filter(f => {
+            return f.area === currentSelectedArea
+          })
+          return filteredData
+        } else if (currentSelectedArea === '全部' && currentSelectedCategory !== '00' && currentSelectedYear === '全部' ) {
           const filteredData = data.filter(c => {
             const categoriesKey = Object.keys(c.categories || {})
             return categoriesKey.includes(currentSelectedCategory)
           })
           return filteredData
-        } else if (currentSelectedArea !== '全部' && currentSelectedCategory === '00' ) {
-          const filteredData = data.filter(f => {
-            return f.area === currentSelectedArea
+        } else if (currentSelectedArea === '全部' && currentSelectedCategory === '00' && currentSelectedYear !== '全部' ) {
+          const filteredData = data.filter(y => {
+            return y.year === currentSelectedYear
           })
           return filteredData
         } else {
@@ -272,7 +353,10 @@
       },
       filterCategory(key) {
         this.currentSelectedCategory = key
-      }
+      },
+      filterYearMethod(key) {
+        this.currentSelectedYear = key
+      },
       // bannerRWD() {
       //   const bannerWidth = this.$refs.bannerSlide.clientWidth;
       //   return bannerRWD(bannerWidth);
