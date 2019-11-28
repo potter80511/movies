@@ -20,6 +20,7 @@ import {
   faCrown,
   faCheck,
   faAngleDoubleRight,
+  faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -47,6 +48,7 @@ library.add(
   faYoutube,
   faGithub,
   faInstagram,
+  faChevronUp,
 )
 
 Vue.use(vueSwiper);
