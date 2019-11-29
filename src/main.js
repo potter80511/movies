@@ -21,6 +21,7 @@ import {
   faCheck,
   faAngleDoubleRight,
   faChevronUp,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { 
@@ -49,6 +50,7 @@ library.add(
   faGithub,
   faInstagram,
   faChevronUp,
+  faChevronDown,
 )
 
 Vue.use(vueSwiper);

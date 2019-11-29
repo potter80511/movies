@@ -47,6 +47,7 @@
               <option value="imdbRates">以IMDB評分排序</option>
               <option value="myRates">以我的評分排序</option>
             </select>
+            <font-awesome-icon icon="chevron-down" />
           </div>
         </div>
         <div class="section-header">
