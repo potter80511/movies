@@ -95,14 +95,6 @@
                 <span v-if="filmData.type === 'movies'">最愛電影</span>
                 <span v-else-if="filmData.type === 'series'">最愛影集</span>
               </div>
-              <div class="related" v-if="relatedData.length > 0">
-                <div
-                  v-for="(related, i) in relatedData"
-                  :key="i">
-                  <img :src="related.wallpaper" />
-                  {{related.name}}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -110,6 +102,30 @@
           <div class="blocks">
             <h3><span class="circle"></span>劇情介紹</h3>
             <div v-html="filmData.summary"></div>
+          </div>
+          <div class="blocks related">
+            <h3><span class="circle"></span>相關續作</h3>
+            <div class="content">
+              <swiper
+                :options="relatedSwiperOpitons"
+                v-if="relatedData.length > 0"
+              >
+                <swiper-slide
+                  v-for="(related, i) in relatedData"
+                  :key="i">
+                  <a :href="'/film_details/' + related.imdb_id">
+                    <img :src="related.wallpaper" />
+                  </a>
+                  <h4>
+                    <a :href="'/film_details/' + related.imdb_id">
+                      {{related.tw_name}}
+                    </a>
+                  </h4>
+                </swiper-slide>
+              </swiper>
+              <div class="swiper-button-prev swiper-button" slot="button-prev"></div>
+              <div class="swiper-button-next swiper-button" slot="button-next"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -128,6 +144,27 @@
     },
     data() {
       return {
+        relatedSwiperOpitons: {
+          slidesPerView: 6,
+          spaceBetween: 30,
+          speed: 800,
+          // autoplay: {
+          //   delay: 4000,
+          //   disableOnInteraction: false,
+          // },
+          breakpoints: {
+            1199: {
+              slidesPerView: 5,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+          },
+          navigation: {
+            nextEl: '.related .swiper-button-next',
+            prevEl: '.related .swiper-button-prev',
+          }
+        },
         filmData: {
           categories: {},
           cast: {},
@@ -197,12 +234,13 @@
             this.seasonsData = objToArray(val.seasons)
           }
 
-          this.filmData = val //整包電影資料
+          this.filmData = val //這頁整包電影資料
 
+          //相關續作資料
           const dataRelated = val.related
           const data = this.$store.state.movies;
           const filterData = data.filter((rel) => {
-            return rel.related && rel.related === dataRelated;
+            return rel.related && rel.related === dataRelated && rel.name !== val.name;
           });
 
           this.relatedData = filterData;
