@@ -39,6 +39,7 @@ export default new Vuex.Store({
               director: obj[key].director,
               wallpaper: obj[key].wallpaper,
               rates: obj[key].rates,
+              related: obj[key].related,
               favorite: obj[key].favorite,
               my_rate: obj[key].my_rate,
               imdb_id: obj[key].imdb_id,
