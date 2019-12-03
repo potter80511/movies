@@ -218,14 +218,18 @@
           const filterData = data.filter((rel) => {
             return rel.related && rel.related === dataRelated && rel.name !== val.name;
           });
-          this.relatedData = filterData;
+          this.relatedData = filterData.sort((a,b) => {
+            return a.year - b.year;
+          });
 
           //相關續作資料
           const directorRelated = val.director
           const filterDirectorData = data.filter((rel) => {
             return rel.director && rel.director === directorRelated && rel.name !== val.name;
           });
-          this.sameDirectorData = filterDirectorData;
+          this.sameDirectorData = filterDirectorData.sort((a,b) => {
+            return b.year - a.year;
+          });
         }
       },
     }
