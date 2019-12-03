@@ -103,28 +103,22 @@
             <h3><span class="circle"></span>劇情介紹</h3>
             <div v-html="filmData.summary"></div>
           </div>
-          <div class="blocks related">
+          <div class="blocks related" v-if="relatedData.length > 0">
             <h3><span class="circle"></span>相關續作</h3>
             <div class="content">
-              <swiper
-                :options="relatedSwiperOpitons"
-                v-if="relatedData.length > 0"
-              >
-                <swiper-slide
-                  v-for="(related, i) in relatedData"
-                  :key="i">
-                  <a :href="'/film_details/' + related.imdb_id">
-                    <img :src="related.wallpaper" />
-                  </a>
-                  <h4>
-                    <a :href="'/film_details/' + related.imdb_id">
-                      {{related.tw_name}}
-                    </a>
-                  </h4>
-                </swiper-slide>
-              </swiper>
-              <div class="swiper-button-prev swiper-button" slot="button-prev"></div>
-              <div class="swiper-button-next swiper-button" slot="button-next"></div>
+              <RelatedFilmsSwiper
+                :relatedData="relatedData"
+                :blockClass="'related'"
+              />
+            </div>
+          </div>
+          <div class="blocks related" v-if="sameDirectorData.length > 0">
+            <h3><span class="circle"></span>{{filmData.director}} 執導相關作品</h3>
+            <div class="content">
+              <RelatedFilmsSwiper
+                :relatedData="sameDirectorData"
+                :blockClass="'related'"
+              />
             </div>
           </div>
         </div>
@@ -137,34 +131,15 @@
   import { rateTenStar } from '../helper';
   import { objToArray } from '../helper';
   import BannerSlide from '../components/BannerSlide';
+  import RelatedFilmsSwiper from '../components/related_film_swiper/RelatedFilmsSwiper';
 
   export default {
     components: {
       BannerSlide,
+      RelatedFilmsSwiper,
     },
     data() {
       return {
-        relatedSwiperOpitons: {
-          slidesPerView: 6,
-          spaceBetween: 30,
-          speed: 800,
-          // autoplay: {
-          //   delay: 4000,
-          //   disableOnInteraction: false,
-          // },
-          breakpoints: {
-            1199: {
-              slidesPerView: 5,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-          },
-          navigation: {
-            nextEl: '.related .swiper-button-next',
-            prevEl: '.related .swiper-button-prev',
-          }
-        },
         filmData: {
           categories: {},
           cast: {},
@@ -183,11 +158,12 @@
           wallpaper: "",
           year: 0
         },
-        relatedData: [],
         bannerData: [],
         writersData: [],
         castData: [],
         cateData: [],
+        relatedData: [],
+        sameDirectorData: [],
         seasonsData: [],
       }
     },
@@ -236,14 +212,20 @@
 
           this.filmData = val //這頁整包電影資料
 
+          const data = this.$store.state.movies;
           //相關續作資料
           const dataRelated = val.related
-          const data = this.$store.state.movies;
           const filterData = data.filter((rel) => {
             return rel.related && rel.related === dataRelated && rel.name !== val.name;
           });
-
           this.relatedData = filterData;
+
+          //相關續作資料
+          const directorRelated = val.director
+          const filterDirectorData = data.filter((rel) => {
+            return rel.director && rel.director === directorRelated && rel.name !== val.name;
+          });
+          this.sameDirectorData = filterDirectorData;
         }
       },
     }
