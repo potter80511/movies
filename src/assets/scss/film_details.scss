@@ -49,10 +49,10 @@
           padding-bottom: 20px;
           border-bottom: 1px dashed #818181;
         }
-        .director, .type, .rates, .my_rate, .casts, .writers, .year, .categories, .end {
+        .director, .type, .rates, .my_rate, .casts, .writers, .year, .categories, .end, .brief {
           margin-bottom: 10px;
         }
-        .casts, .director, .writers, .categories {
+        .casts, .director, .writers, .categories, .brief {
           display: flex;
           b{
             min-width: 48px;

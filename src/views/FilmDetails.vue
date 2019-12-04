@@ -91,6 +91,10 @@
                   <span class="total" v-if="seasonsData.length > 0">，共 <b>{{seasonsData.length}}</b> 季</span>
                 </span>
               </div>
+              <div class="brief" v-if="filmData.brief">
+                <b>簡述：</b>
+                <p>{{filmData.brief}}</p>
+              </div>
               <div class="favorite" v-if="filmData.favorite">
                 <span v-if="filmData.type === 'movies'">最愛電影</span>
                 <span v-else-if="filmData.type === 'series'">最愛影集</span>
@@ -141,6 +145,7 @@
     data() {
       return {
         filmData: {
+          brief: "",
           categories: {},
           cast: {},
           director: "",
