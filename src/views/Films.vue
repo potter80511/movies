@@ -248,6 +248,10 @@
             keyName: '奇幻',
             key: '14'
           },
+          {
+            keyName: '溫馨',
+            key: '15'
+          },
         ],
         filterYears: [
           '全部',
@@ -288,7 +292,7 @@
         const currentSelectedArea = this.currentSelectedArea;
         const currentSelectedCategory = this.currentSelectedCategory;
         const currentSelectedYear = this.currentSelectedYear;
-    
+
         if(currentSelectedArea !== '全部' && currentSelectedCategory !== '00' && currentSelectedYear !== '全部' ) {
           const filteredData = data.filter(f => {
             return f.area === currentSelectedArea
@@ -341,7 +345,7 @@
         } else {
           return data
         }
-        
+
       },
       bannerData() {
         const routeType = this.$route.name

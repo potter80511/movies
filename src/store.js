@@ -27,7 +27,7 @@ export default new Vuex.Store({
         .then((data) => {
           const movies = []
           const obj = data.val()
-          
+
           for (let key in obj) {
             movies.push({
               id: key,
@@ -58,7 +58,7 @@ export default new Vuex.Store({
         .then((data) => {
           const series = []
           const obj = data.val()
-          
+
           for (let key in obj) {
             series.push({
               id: key,
@@ -141,4 +141,4 @@ export default new Vuex.Store({
   }
 })
 
-// 1動作 2犯罪 3愛情 4科幻 5驚悚 6恐怖 7劇情 8喜劇 9家庭 10戰爭 11傳記 12動畫 13音樂 14奇幻
+// 1動作 2犯罪 3愛情 4科幻 5驚悚 6恐怖 7劇情 8喜劇 9家庭 10戰爭 11傳記 12動畫 13音樂 14奇幻 15溫馨
