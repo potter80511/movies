@@ -68,7 +68,7 @@
               <div class="film_content">
                 <div style="display: none;">{{item.id}}</div>
                 <h3 class="name">{{item.tw_name}}</h3>
-                <div class="rates">
+                <div class="rates" v-if="sortBy === 'imdbRates'">
                   <b class="title">IMDB：</b>
                   <span v-for="(star, j) in rateStarWithEmpty(item.rates)"
                       :key="j">
@@ -77,6 +77,16 @@
                     <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
                   </span>
                   <b>{{item.rates.toFixed(1)}}</b>
+                </div>
+                <div class="rates" v-else>
+                  <b class="title">我的評分：</b>
+                  <span v-for="(star, j) in rateStarWithEmpty(item.my_rate)"
+                      :key="j">
+                    <font-awesome-icon v-if="star==='star'" icon="star" />
+                    <font-awesome-icon v-if="star==='half'" icon="star-half-alt" />
+                    <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
+                  </span>
+                  <b v-if="item.my_rate">{{item.my_rate.toFixed(1)}}</b>
                 </div>
                 <div class="area">
                   <b>地區：</b>{{item.area}}
