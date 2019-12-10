@@ -41,8 +41,8 @@
       background: {
         default: false
       }
-    }
-    ,data() {
+    },
+    data() {
       return {
         swiperBanner: {
           speed: 800,

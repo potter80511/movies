@@ -6,7 +6,7 @@
   .filter {
     .conditions {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       line-height: 1;
       margin-bottom: 12px;
       .label {
@@ -14,20 +14,27 @@
         padding-left: 10px;
         margin-right: 30px;
         font-size: 18px;
+        min-width: 75px;
         span {
           display: inline-block;
           margin-right: 10px;
         }
       }
       .contents {
-        span span {
-          font-size: 13px;
-          padding: 3px 6px 0;
-          margin-right: 5px;
-          cursor: pointer;
-          &:hover, &.active {
-            background: $confort-blue;
-            color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        span {
+          margin-bottom: 3px;
+          display: inline-block;
+          span {
+            font-size: 13px;
+            padding: 6px 6px 0;
+            margin-right: 5px;
+            cursor: pointer;
+            &:hover, &.active {
+              background: $confort-blue;
+              color: #fff;
+            }
           }
         }
       }
