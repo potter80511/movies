@@ -12,7 +12,7 @@
       <div class="section-header">
         <h2>{{sectionTitle}}<span>{{subTitle}}</span></h2>
       </div>
-      <swiper 
+      <swiper
         :options="swiperOpitons"
         v-if="filmsData.length > 0"
       >
@@ -77,16 +77,19 @@
           spaceBetween: 30,
           speed: 800,
           loop: true,
-          // autoplay: {
-          //   delay: 4000,
-          //   disableOnInteraction: false,
-          // },
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
           breakpoints: {
             1199: {
               slidesPerView: 4,
             },
             768: {
               slidesPerView: 3,
+            },
+            575: {
+              slidesPerView: 2,
             },
           },
           navigation: {

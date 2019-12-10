@@ -2,7 +2,7 @@
 @import 'mixin.scss';
 
 .home {
-  
+
   .banner {
     position: relative;
     .swiper-pagination {
@@ -99,6 +99,11 @@
           @include text_in_lines(3);
         }
       }
+    }
+  }
+  @media (max-width: 575px) {
+    .more {
+      top: 0;
     }
   }
 }

@@ -1,17 +1,25 @@
 @import 'color.scss';
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  padding: 15px 20px;
-  background: rgba(0,0,0,0.5);
-  transition: all .3s;
-  &.onScrolled {
+  a {
+    &.router-link-exact-active, &:hover {
+      color: #fff;
+      text-shadow: 0 0 8px #fff;
+    }
+  }
+  .h_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.5);
+    transition: all .3s;
+  }
+  &.onScrolled .h_wrap {
     padding: 10px 20px;
     background: #1d1d1d;
     box-shadow: 0 3px 6px rgba(0,0,0,0.5);
@@ -54,6 +62,7 @@ header {
   }
   .menu {
     display: flex;
+    justify-content: space-between;
     a {
       font-size: 16px;
       background: none!important;
@@ -62,13 +71,95 @@ header {
       box-shadow: none;
       border-radius: 0!important;
       margin-left: 20px;
-      &.router-link-exact-active, &:hover {
-        color: #fff;
-        text-shadow: 0 0 8px #fff;
+    }
+    .fa-bars {
+      display: none;
+    }
+  }
+  .main_nav {
+    display: flex;
+  }
+  .mobile {
+    display: none;
+  }
+  @media (max-width: 991px) {
+    .h_wrap{
+      padding: 10px 20px;
+      background: #1d1d1d;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+      .logo {
+        a {
+          text-shadow: none!important;
+          span {
+            font-size: 22px;
+            text-shadow: 0 0 5px #888;
+            padding-left: 0;
+          }
+          strong {
+            font-size: 28px;
+            box-shadow: 0 0 12px #7a6929;
+          }
+        }
       }
     }
-    .tool-nav {
-      button.v-btn {
+    .menu {
+      .main_nav.desktop {
+        display: none;
+      }
+      .fa-bars {
+        display: block;
+        font-size: 26px;
+        cursor: pointer;
+      }
+    }
+    .mobile {
+      display: block;
+      &.draw_in {
+        .mobile_block {
+          display: block;
+        }
+        .mobile_menu {
+          transform: translateX(0);
+        }
+      }
+      .mobile_block, .mobile_menu {
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 69px;
+      }
+      .mobile_block {
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,.7);
+        display: none;
+      }
+      .mobile_menu {
+        width: 40%;
+        height: 100%;
+        background: #404040;
+        padding-top: 10px;
+        box-shadow: 5px 0 5px rgba(0,0,0,.5);
+        transform: translateX(-110%);
+        transition: transform .3s;
+        .main_nav {
+          flex-direction: column;
+          a {
+            display: inline-block;
+            width: 100%;
+            padding: 13px 20px 10px;
+            line-height: 1;
+            border-bottom: 1px solid #555;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 575px) {
+    .mobile {
+      .mobile_menu {
+        width: 60%;
       }
     }
   }
