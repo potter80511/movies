@@ -7,14 +7,15 @@ import 'swiper/dist/css/swiper.css';
 import { initializeApp, auth } from 'firebase';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { 
+import {
   faStar as farStar,
 } from '@fortawesome/free-regular-svg-icons';
 
-import { 
+import {
   faStar,
   faStarHalfAlt,
   faChevronRight,
+  faArrowRight,
   faChevronLeft,
   faHeart,
   faCrown,
@@ -24,7 +25,7 @@ import {
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { 
+import {
   faImdb,
   faFacebookSquare,
   faLine,
@@ -38,6 +39,7 @@ library.add(
   farStar,
   faStarHalfAlt,
   faChevronRight,
+  faArrowRight,
   faChevronLeft,
   faImdb,
   faHeart,

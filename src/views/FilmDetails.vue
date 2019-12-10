@@ -30,6 +30,14 @@
                   <font-awesome-icon v-if="star==='empty'" :icon="['far', 'star']"/>
                 </span>
                 <b>{{filmData.rates.toFixed(1)}} 分</b>
+                <a
+                  class="go_imdb"
+                  :href="`https://www.imdb.com/title/${filmData.imdb_id}`"
+                  target="_blank"
+                >
+                  <font-awesome-icon icon="arrow-right" />
+                  <font-awesome-icon :icon="['fab', 'imdb']" />
+                </a>
               </div>
               <div class="my_rate" v-if="filmData.my_rate">
                 <font-awesome-icon icon="check" />
@@ -177,7 +185,7 @@
         return this.$store.state.currentFilm //獲取電影資料
       },
       getRelatedMData() {
-        
+
       }
     },
     methods: {
