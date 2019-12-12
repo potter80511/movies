@@ -10,7 +10,6 @@
   }
   .main {
     margin: 0 auto;
-    width: 90%;
     .main_info {
       margin: 0;
       padding-bottom: 50px;
@@ -19,18 +18,17 @@
       >.row {
         margin: 0;
       }
-      .wallpaper {
-        width: 27%;
-        img {
-          box-shadow: 5px 5px 5px rgba(0,0,0,.5);
-          padding: 10px;
-          border: 1px solid #ccc;
+      .film_title {
+        @media (max-width: 767px) {
+          &.desktop {
+            display: none;
+          }
         }
-      }
-      .words {
-        width: 70%;
-        padding-left: 25px;
-        *{text-shadow: 3px 3px 5px #000;}
+        @media (min-width: 768px) {
+          &.mobile {
+            display: none;
+          }
+        }
         h1 {
           position: relative;
           .favorite_crown {
@@ -45,10 +43,22 @@
         }
         h2 {
           font-size: 22px;
-          margin-bottom: 25px;
-          padding-bottom: 20px;
-          border-bottom: 1px dashed #818181;
         }
+      }
+      .wallpaper {
+        img {
+          box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+      }
+      .film_info {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px dashed #818181;
+      }
+      .words {
+        *{text-shadow: 3px 3px 5px #000;}
         .director, .type, .rates, .my_rate, .casts, .writers, .year, .categories, .end, .brief {
           margin-bottom: 10px;
         }
@@ -217,6 +227,25 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    .main {
+      width: 90%;
+    }
+  }
+  @media (max-width: 767px) {
+    >.container {
+      width: 95%;
+    }
+  }
+  @media (max-width: 575px) {
+    .main {
+      .main_info {
+        .wallpaper, .words {
+          padding: 0;
         }
       }
     }

@@ -64,4 +64,11 @@
       }
     }
   }
+  @media (max-width: 575px) {
+    .banner {
+      .swiper-slide {
+        height: 180px!important;
+      }
+    }
+  }
 }

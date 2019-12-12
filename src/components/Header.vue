@@ -2,7 +2,10 @@
   <header id="header">
     <div class="h_wrap">
       <div class="logo">
-        <router-link to="/">
+        <router-link
+          to="/"
+          class="navbarLink"
+        >
           <span>My</span>
           <strong>IMDB</strong>
         </router-link>
@@ -34,16 +37,19 @@
         <div class="main_nav">
           <router-link
               to="/"
+              class="navbarLink"
             >
               HOME
           </router-link>
           <router-link
             to="/movies"
+            class="navbarLink"
           >
             Movies
           </router-link>
           <router-link
             to="/series"
+            class="navbarLink"
           >
             Series
           </router-link>
@@ -81,6 +87,14 @@
         this.$refs.mobile.classList.remove("draw_in");
         mobileOn = false;
       });
+
+      let navbarLink = document.getElementsByClassName('navbarLink')
+      for(let i = 0; i < navbarLink.length; i++) {
+        navbarLink[i].addEventListener('click', () => {
+          this.$refs.mobile.classList.remove("draw_in");
+          mobileOn = false;
+        });
+      }
     }
   }
 </script>

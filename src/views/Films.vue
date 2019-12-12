@@ -21,7 +21,7 @@
           <h2 v-else-if="$route.name === 'series'">影集列表<span>Series</span></h2>
         </div>
         <div class="row list_content" v-if="filmsData.length > 0">
-          <div class="item col-lg-4 col-6"
+          <div class="item col-lg-4 col-sm-6"
             v-for="(item, i) in filmsData"
             :key="i"
             >

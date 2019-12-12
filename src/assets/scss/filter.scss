@@ -3,6 +3,7 @@
 .tools {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   .filter {
     .conditions {
       display: flex;
@@ -71,6 +72,11 @@
       top: 8px;
       font-size: 14px;
       transition: none!important;
+    }
+  }
+  @media (max-width: 767px) {
+    .filter, .sort, .sort select {
+      width: 100%;
     }
   }
 }
