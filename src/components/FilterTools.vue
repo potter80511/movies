@@ -1,14 +1,14 @@
 <template>
   <div class="tools">
-    <div class="filter">
+    <div class="filter desktop">
       <div class="conditions">
         <div class="label">
           <span>地區</span>
           <font-awesome-icon icon="angle-double-right" />
         </div>
         <div class="contents">
-          <span >
-            <span v-for="filterArea in filterAreas" :key="filterArea.index" :class="{'active': currentSelectedArea === filterArea.keyName}" @click="filterAreaMethod(filterArea.keyName)">{{ filterArea.keyName }}</span>
+          <span v-for="filterArea in filterAreas" :key="filterArea.index">
+            <span :class="{'active': currentSelectedArea === filterArea.keyName}" @click="filterAreaMethod(filterArea.keyName)">{{ filterArea.keyName }}</span>
           </span>
         </div>
       </div>
@@ -33,6 +33,36 @@
             <span :class="{'active': currentSelectedYear === filterYear}" @click="filterYearMethod(filterYear)">{{ filterYear }}</span>
           </span>
         </div>
+      </div>
+    </div>
+    <div class="filter mobile" id="filterMobile">
+      <div class="tags">
+        <button
+          v-for="filterType in filterTypes"
+          :key="filterType.id"
+          :data-id="filterType.id"
+          @click="showFilter"
+          class="tag"
+        >
+            {{filterType.type}}
+          </button>
+      </div>
+      <div class="filter_content">
+        <ul id="area" class="mobile_contents">
+          <li v-for="filterArea in filterAreas" :key="filterArea.index">
+            <span :class="{'active': currentSelectedArea === filterArea.keyName}" @click="filterAreaMethod(filterArea.keyName)">{{ filterArea.keyName }}</span>
+          </li>
+        </ul>
+        <ul id="cate" class="mobile_contents">
+          <li v-for="filterCate in filterCates" :key="filterCate.id">
+            <span :class="{'active': currentSelectedCategory === filterCate.key}" @click="filterCategory(filterCate.key)">{{ filterCate.keyName }}</span>
+          </li>
+        </ul>
+        <ul id="year" class="mobile_contents">
+          <li v-for="filterYear in filterYears" :key="filterYear.index">
+            <span :class="{'active': currentSelectedYear === filterYear}" @click="filterYearMethod(filterYear)">{{ filterYear }}</span>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="sort">
@@ -177,8 +207,49 @@
           2013,
           1994,
         ],
+        filterTypes: [
+          {
+            id: "area",
+            type: '地區',
+          },
+          {
+            id: "cate",
+            type: '種類',
+          },
+          {
+            id: "year",
+            type: '年份',
+          },
+        ],
       }
     },
+    methods: {
+      showFilter(e) {
+        const dataId = e.target.getAttribute("data-id");
+        let tag = document.getElementsByClassName('tag');
+        let mobileConents = document.getElementsByClassName('mobile_contents');
+        for (let i=0; i<tag.length; i++) {
+          tag[i].classList.remove('active')
+          mobileConents[i].classList.remove('slide-down')
+        }
+        e.target.classList.add('active');
+        document.getElementById(dataId).classList.add('slide-down');
+      }
+    },
+    mounted() {
+      document.addEventListener("click", (e) => {
+        let filterMobile = document.getElementById('filterMobile');
+        let tag = document.querySelectorAll('#filterMobile .tags button')
+        let mobileConents = document.querySelectorAll('.mobile_contents')
+
+        for (let i=0; i<tag.length; i++) {
+          if(e.target !== tag[i]) {
+            tag[i].classList.remove('active')
+            mobileConents[i].classList.remove('slide-down')
+          }
+        }
+      });
+    }
   }
 </script>
 

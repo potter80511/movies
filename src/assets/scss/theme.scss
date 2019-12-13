@@ -17,6 +17,16 @@ a {
     text-decoration: none;
   }
 }
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+button {
+  &:focus {
+    outline: none;
+  }
+}
 img {
   width: 100%;
   height: auto;
