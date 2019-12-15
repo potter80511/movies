@@ -25,7 +25,7 @@
             <div class="words col-md-8">
               <div class="film_title desktop">
                 <h1>
-                  <div class="favorite_crown" v-if="filmData.rates >= 8">
+                  <div class="favorite_crown" v-if="filmData.rates >= 8 || cateData.includes('恐怖') || cateData.includes('喜劇') && filmData.rates >= 6 || cateData.includes('動畫') && filmData.rates >= 7">
                     <font-awesome-icon icon="crown" />
                   </div>
                   {{filmData.name}}
