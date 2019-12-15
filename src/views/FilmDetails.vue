@@ -25,7 +25,7 @@
             <div class="words col-md-8">
               <div class="film_title desktop">
                 <h1>
-                  <div class="favorite_crown" v-if="filmData.rates >= 8 || cateData.includes('恐怖') || cateData.includes('喜劇') && filmData.rates >= 6 || cateData.includes('動畫') && filmData.rates >= 7">
+                  <div class="favorite_crown" v-if="showCrown">
                     <font-awesome-icon icon="crown" />
                   </div>
                   {{filmData.name}}
@@ -201,6 +201,7 @@
         relatedData: [],
         sameDirectorData: [],
         seasonsData: [],
+        showCrown: false,
       }
     },
     computed: {
@@ -237,6 +238,18 @@
           if(val.categories) {
             this.cateData = objToArray(val.categories)
           }
+          //是否顯示皇冠
+          const cateData = this.cateData;
+          if (cateData.includes('動畫') && val.rates >= 7) {
+            this.showCrown = true;
+          } else if (cateData.includes('喜劇') && !cateData.includes('動畫')) {
+            this.showCrown = true;
+          } else if (cateData.includes('恐怖') && val.rates >= 6) {
+            this.showCrown = true;
+          } else if (val.rates >= 8) {
+            this.showCrown = true;
+          }
+          //filmData.rates >= 8 || cateData.includes('恐怖') || cateData.includes('喜劇') && filmData.rates >= 6.5 || cateData.includes('動畫') && filmData.rates >= 7
 
           //演員資料
           this.castData = objToArray(val.cast)
