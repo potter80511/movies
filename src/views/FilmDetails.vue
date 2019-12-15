@@ -10,8 +10,8 @@
             <div class="wallpaper col-md-4">
               <div class="film_title mobile">
                 <h1>
-                  <div class="favorite_crown" v-if="filmData.favorite">
-                    <font-awesome-icon icon="crown" />
+                  <div class="favorite_crown" v-if="filmData.rates >= 8">
+                    <font-awesome-icon icon="crown" />{{filmData.rates}}
                   </div>
                   {{filmData.name}}
                 </h1>
@@ -25,7 +25,7 @@
             <div class="words col-md-8">
               <div class="film_title desktop">
                 <h1>
-                  <div class="favorite_crown" v-if="filmData.favorite">
+                  <div class="favorite_crown" v-if="filmData.rates >= 8">
                     <font-awesome-icon icon="crown" />
                   </div>
                   {{filmData.name}}
@@ -131,8 +131,14 @@
             <h3><span class="circle"></span>劇情介紹</h3>
             <div v-html="filmData.summary"></div>
           </div>
+          <div class="blocks" v-if="filmData.trailer">
+            <h3><span class="circle"></span>預告</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" :src="`https://www.youtube.com/embed/${filmData.trailer}`" allowfullscreen></iframe>
+            </div>
+          </div>
           <div class="blocks related" v-if="relatedData.length > 0">
-            <h3><span class="circle"></span>相關續作</h3>
+            <h3><span class="circle"></span>{{filmData.related}} 系列</h3>
             <div class="content">
               <RelatedFilmsSwiper
                 :relatedData="relatedData"
@@ -182,6 +188,7 @@
           related: "",
           still: false,
           summary: "",
+          trailer: "",
           tw_name: "",
           type: "",
           wallpaper: "",
